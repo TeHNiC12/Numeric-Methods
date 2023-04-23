@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab_1.SubtaskSolvers
+﻿namespace Lab_1.SubtaskSolvers
 {
     public class Iterative : SubTask<MatExt>
     {
@@ -23,27 +16,33 @@ namespace Lab_1.SubtaskSolvers
             Matrix.Print(AlphaBeta.B);
             float norm = Matrix.NormAc(AlphaBeta.A);
             Console.WriteLine($"||Alpha||c = {norm}");
+            float[,] X;
             if (norm < 1)
             {
                 Console.WriteLine("Necessary condition met\n");
-                float[,] X = Solve(AlphaBeta);
-                for (int i = 0; i < X.GetLength(0); i++)
-                {
-                    Console.WriteLine($"X{i + 1} = {X[i, 0]:0.0000}");
-                }
+                X = Solve(AlphaBeta, true);
             }
             else
             {
                 Console.WriteLine("Necessary condition isn't met");
+                X = Solve(AlphaBeta, false);
+            }
+            for (int i = 0; i < X.GetLength(0); i++)
+            {
+                Console.WriteLine($"X{i + 1} = {X[i, 0]:0.0000}");
             }
         }
-
-        private float FindError(MatExt XCurXPrev, float[,] Alpha)
+        private float FindErrorNormal(MatExt XCurXPrev, float[,] Alpha)
         {
             float Error = Matrix.NormAc(Alpha) * Matrix.NormAc(Matrix.Subtract(XCurXPrev.A, XCurXPrev.B)) / (1 - Matrix.NormAc(Alpha));
             return Error;
         }
-        private float[,] Solve(MatExt AlphaBeta)
+        private float FindErrorCondNotMet(MatExt XCurXPrev)
+        {
+            float Error = Matrix.NormAc(Matrix.Subtract(XCurXPrev.A, XCurXPrev.B));
+            return Error;
+        }
+        private float[,] Solve(MatExt AlphaBeta, bool ConditionMet)
         {
             float Accuracy = RequestAccuracy();
             bool PrintEach = PrintEachIterration();
@@ -53,7 +52,15 @@ namespace Lab_1.SubtaskSolvers
             {
                 XCurXPrev.B = XCurXPrev.A;
                 XCurXPrev.A = Matrix.Add(AlphaBeta.B, Matrix.Multiply(AlphaBeta.A, XCurXPrev.B));
-                float Error = FindError(XCurXPrev, AlphaBeta.A);
+                float Error;
+                if (ConditionMet)
+                {
+                    Error = FindErrorNormal(XCurXPrev, AlphaBeta.A);
+                }
+                else
+                {
+                    Error = FindErrorCondNotMet(XCurXPrev);
+                }
                 if (Error <= Accuracy)
                 {
                     Console.WriteLine($"Solution found on step {k}");
