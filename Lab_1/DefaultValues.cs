@@ -2,11 +2,11 @@
 {
     public class DefaultValues
     {
-        public MatExt Cond1_6 = new()
+        public MatExt Cond_LU_Gaussian = new()
         {
             A = new float[4, 4]
             {
-                {8f, 8f, -5f, -8},
+                {8f, 8f, -5f, -8f},
                 {8f, -5f, 9f, -8f},
                 {5f, -4f, -6f, -2f},
                 {8f, 3f, 6f, 6f}
@@ -19,7 +19,7 @@
                 {-95f}
             }
         };
-        public MatExt Cond2 = new()
+        public MatExt Cond_Rundown = new()
         {
             A = new float[5, 3]
             {
@@ -36,6 +36,23 @@
                 {-12f},
                 {47f},
                 {-90f}
+            }
+        };
+        public MatExt Cond_Iterative_Zeidel = new()
+        {
+            A = new float[4, 4]
+            {
+                {-19f, 2f, -1f, -8f},
+                {2f, 14f, 0f, -4f},
+                {6f, -5f, -20f, -6f},
+                {-6f, 4f, -2f, 15f}
+            },
+            B = new float[4, 1]
+            {
+                {38f},
+                {20f},
+                {52f},
+                {43f}
             }
         };
     }

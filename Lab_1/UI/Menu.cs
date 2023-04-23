@@ -7,8 +7,9 @@ namespace Lab_1.UI
         public Menu()
         {
             Options.Add(new MenuOption(new LUDecomposition(), "1 LU Decomposition"));
-            Options.Add(new MenuOption(new Rundown(), "2 Rundown method"));
-            Options.Add(new MenuOption(new Gaussian(), "3 Gaussian method"));
+            Options.Add(new MenuOption(new Gaussian(), "2 Gaussian method"));
+            Options.Add(new MenuOption(new Rundown(), "3 Rundown method"));
+            Options.Add(new MenuOption(new Iterative(), "4 Iterative method"));
         }
         public void Run()
         {
@@ -43,7 +44,8 @@ namespace Lab_1.UI
                 else
                 {
                     Console.Write(Devider);
-                    Console.WriteLine($"Subtask {SelectedOption}\n");
+                    Options[SelectedOption - 1].DisplayOption();
+                    Console.Write("\n");
                     try
                     {
                         OnSelection(SelectedOption - 1);

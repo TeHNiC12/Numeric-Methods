@@ -14,15 +14,19 @@ namespace Lab_1.UI
             DefaultValues defaultValues = new();
             if (Solver is LUDecomposition)
             {
-                TaskData = defaultValues.Cond1_6;
+                TaskData = defaultValues.Cond_LU_Gaussian;
             }
             else if (Solver is Rundown)
             {
-                TaskData = defaultValues.Cond2;
+                TaskData = defaultValues.Cond_Rundown;
             }
             else if (Solver is Gaussian)
             {
-                TaskData = defaultValues.Cond1_6;
+                TaskData = defaultValues.Cond_LU_Gaussian;
+            }
+            else if (Solver is Iterative)
+            {
+                TaskData = defaultValues.Cond_Iterative_Zeidel;
             }
             Solve();
         }
@@ -37,6 +41,10 @@ namespace Lab_1.UI
                 TaskData = InputHandlers.ABC_D(InputAssist);
             }
             else if (Solver is Gaussian)
+            {
+                TaskData = InputHandlers.AB(InputAssist);
+            }
+            else if (Solver is Iterative)
             {
                 TaskData = InputHandlers.AB(InputAssist);
             }
@@ -55,6 +63,10 @@ namespace Lab_1.UI
             else if (Solver is Gaussian)
             {
                 ((Gaussian)Solver).Execute((MatExt)TaskData);
+            }
+            else if (Solver is Iterative)
+            {
+                ((Iterative)Solver).Execute((MatExt)TaskData);
             }
         }
         public void DisplayOption()

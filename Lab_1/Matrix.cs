@@ -16,7 +16,7 @@
                 {
                     float current = A[i, j];
                     Console.Write(" ");
-                    Console.Write($"{current,10:0.00}");
+                    Console.Write($"{current,10:0.0000}");
                     Console.Write(" ");
                     if (j < columns - 1)
                     {
@@ -77,6 +77,27 @@
             else
             {
                 throw new Exception("Can't add matrices: size does not match");
+            }
+        }
+        public static float[,] Subtract(float[,] A, float[,] B)
+        {
+            if ((A.GetLength(0) == B.GetLength(0)) & (A.GetLength(1) == B.GetLength(1)))
+            {
+                int rows = A.GetLength(0);
+                int columns = A.GetLength(1);
+                float[,] C = new float[rows, columns];
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        C[i, j] = A[i, j] - B[i, j];
+                    }
+                }
+                return C;
+            }
+            else
+            {
+                throw new Exception("Can't subtract matrices: size does not match");
             }
         }
         public static float[,] Multiply(float[,] A, float[,] B)
@@ -261,6 +282,120 @@
                 input.B[st1, i] = input.B[st2, i];
                 input.B[st2, i] = temp;
             }
+        }
+        public static MatExt AlphaBetaTransform(MatExt input)
+        {
+            if (Matrix.Determinant(input.A) == 0)
+            {
+                throw new Exception("Matrix A is degernerate");
+            }
+            else
+            {
+                int size = input.A.GetLength(0);
+                MatExt AlphaBeta = new()
+                {
+                    A = Matrix.CreateEmpty(size, size),
+                    B = Matrix.CreateEmpty(size, 1)
+                };
+                FixDiagonal(input);
+                for (int i = 0; i < size; i++)
+                {
+                    for (int j = 0; j < size; j++)
+                    {
+                        if (i == j)
+                        {
+                            AlphaBeta.A[i, j] = 0;
+                        }
+                        else
+                        {
+                            AlphaBeta.A[i, j] = -input.A[i, j] / input.A[i, i];
+                        }
+                    }
+                    AlphaBeta.B[i, 0] = input.B[i, 0] / input.A[i, i];
+                }
+                return AlphaBeta;
+            }
+        }
+        private static void FixDiagonal(MatExt input)
+        {
+            int size = input.A.GetLength(0);
+            for (int i = 0; i < size; i++)
+            {
+                if (input.A[i, i] == 0)
+                {
+                    bool swichflag;
+                    if (i != size - 1)
+                    {
+                        swichflag = SwichDown(input, i);
+                        if (!swichflag)
+                        {
+                            swichflag = SwichUp(input, i);
+                        }
+                    }
+                    else
+                    {
+                        swichflag = SwichUp(input, i);
+                    }
+                    if (!swichflag)
+                    {
+                        throw new Exception("Ubable to make all diagonal elements non zero");
+                    }
+                }
+            }
+        }
+        private static bool CheckSwichCompatability(float[,] A, int currentI, int checkI)
+        {
+            if ((A[currentI, checkI] != 0) & (A[checkI, currentI] != 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private static bool SwichDown(MatExt input, int i)
+        {
+            bool swichflag = false;
+            for (int j = i + 1; j < input.A.GetLength(0); j++)
+            {
+                swichflag = CheckSwichCompatability(input.A, i, j);
+                if (swichflag)
+                {
+                    Matrix.SwichString(input, i, j);
+                }
+            }
+            return swichflag;
+        }
+        private static bool SwichUp(MatExt input, int i)
+        {
+            bool swichflag = false;
+            for (int j = i - 1; j >= 0; j--)
+            {
+                swichflag = CheckSwichCompatability(input.A, i, j);
+                if (swichflag)
+                {
+                    Matrix.SwichString(input, i, j);
+                }
+            }
+            return swichflag;
+        }
+        public static float NormAc(float[,] A)
+        {
+            float norm = 0;
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                float sum = 0;
+                for (int j = 0; j < A.GetLength(1); j++)
+                {
+                    sum += Math.Abs(A[i, j]);
+                }
+                if (sum > norm)
+                {
+                    norm = sum;
+                }
+            }
+            return norm;
         }
     }
 }
