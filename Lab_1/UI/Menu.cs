@@ -10,6 +10,7 @@ namespace Lab_1.UI
             Options.Add(new MenuOption(new Gaussian(), "2 Gaussian method"));
             Options.Add(new MenuOption(new Rundown(), "3 Rundown method"));
             Options.Add(new MenuOption(new Iterative(), "4 Iterative method"));
+            Options.Add(new MenuOption(new Zeidel(), "5 Zeidel method"));
         }
         public void Run()
         {
