@@ -153,6 +153,40 @@
             }
             return A_T;
         }
+        public static bool CheckSymmetry(float[,] A)
+        {
+            if (Compare(A, Transpose(A)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool Compare(float[,] A, float[,] B)
+        {
+            if ((A.GetLength(0) == B.GetLength(0)) & (A.GetLength(1) == B.GetLength(1)))
+            {
+                int rows = A.GetLength(0);
+                int columns = A.GetLength(1);
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        if (A[i, j] != B[i, j])
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         private static float[,] CreateMinorMatrix(float[,] A, int row, int column)
         {
             int size = A.GetLength(0);
