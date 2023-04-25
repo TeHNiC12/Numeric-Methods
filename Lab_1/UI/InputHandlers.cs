@@ -2,6 +2,23 @@
 {
     public static class InputHandlers
     {
+        public static Mat A(bool InputAssist)
+        {
+            Console.Write("Input matrix size: ");
+            string sizeInput = Console.ReadLine();
+            int size;
+            while (!int.TryParse(sizeInput, out size))
+            {
+                Console.Write("Please try again: ");
+                sizeInput = Console.ReadLine();
+            }
+            Mat tCond = new()
+            {
+                A = Matrix.CreateEmpty(size, size)
+            };
+            InputMatrix(tCond.A, "A", InputAssist);
+            return tCond;
+        }
         public static MatExt AB(bool InputAssist)
         {
             Console.Write("Input amount of variables: ");

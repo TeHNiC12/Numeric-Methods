@@ -55,5 +55,14 @@
                 {43f}
             }
         };
+        public Mat Cond_Jakobi = new()
+        {
+            A = new float[3, 3]
+            {
+                {5f, -3f, -4f},
+                {-3f, -3f, 4f},
+                {-4f, 4f, 0f}
+            }
+        };
     }
 }

@@ -32,6 +32,10 @@ namespace Lab_1.UI
             {
                 TaskData = defaultValues.Cond_Iterative_Zeidel;
             }
+            else if (Solver is Jakobi)
+            {
+                TaskData = defaultValues.Cond_Jakobi;
+            }
             Solve();
         }
         public void SolveCustom(bool InputAssist)
@@ -56,6 +60,10 @@ namespace Lab_1.UI
             {
                 TaskData = InputHandlers.AB(InputAssist);
             }
+            else if (Solver is Jakobi)
+            {
+                TaskData = InputHandlers.A(InputAssist);
+            }
             Solve();
         }
         private void Solve()
@@ -79,6 +87,10 @@ namespace Lab_1.UI
             else if (Solver is Zeidel)
             {
                 ((Zeidel)Solver).Execute((MatExt)TaskData);
+            }
+            else if (Solver is Jakobi)
+            {
+                ((Jakobi)Solver).Execute((Mat)TaskData);
             }
         }
         public void DisplayOption()
