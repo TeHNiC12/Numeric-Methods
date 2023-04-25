@@ -36,6 +36,10 @@ namespace Lab_1.UI
             {
                 TaskData = defaultValues.Cond_Jakobi;
             }
+            else if (Solver is QRAlgorithm)
+            {
+                TaskData = defaultValues.Cond_QR;
+            }
             Solve();
         }
         public void SolveCustom(bool InputAssist)
@@ -61,6 +65,10 @@ namespace Lab_1.UI
                 TaskData = InputHandlers.AB(InputAssist);
             }
             else if (Solver is Jakobi)
+            {
+                TaskData = InputHandlers.A(InputAssist);
+            }
+            else if (Solver is QRAlgorithm)
             {
                 TaskData = InputHandlers.A(InputAssist);
             }
@@ -91,6 +99,10 @@ namespace Lab_1.UI
             else if (Solver is Jakobi)
             {
                 ((Jakobi)Solver).Execute((Mat)TaskData);
+            }
+            else if (Solver is QRAlgorithm)
+            {
+                ((QRAlgorithm)Solver).Execute((Mat)TaskData);
             }
         }
         public void DisplayOption()

@@ -64,5 +64,14 @@
                 {-4f, 4f, 0f}
             }
         };
+        public Mat Cond_QR = new()
+        {
+            A = new float[3, 3]
+            {
+                {-6f, 1f, -4f},
+                {-6f, 8f, -2f},
+                {2f, -9f, 5f}
+            }
+        };
     }
 }

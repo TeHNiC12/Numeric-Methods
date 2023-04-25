@@ -143,12 +143,12 @@
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
-            float[,] A_T = new float[rows, columns];
+            float[,] A_T = new float[columns, rows];
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    A_T[i, j] = A[j, i];
+                    A_T[j, i] = A[i, j];
                 }
             }
             return A_T;
@@ -430,6 +430,20 @@
                 }
             }
             return norm;
+        }
+        public static float NormA2(float[,] A)
+        {
+            int rows = A.GetLength(0);
+            int columns = A.GetLength(1);
+            float sum = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0;j < columns; j++)
+                {
+                    sum += A[i, j] * A[i, j];
+                }
+            }
+            return (float) Math.Sqrt(sum);
         }
     }
 }

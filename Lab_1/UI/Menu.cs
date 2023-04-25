@@ -12,6 +12,7 @@ namespace Lab_1.UI
             Options.Add(new MenuOption(new Iterative(), "4 Iterative method"));
             Options.Add(new MenuOption(new Zeidel(), "5 Zeidel method"));
             Options.Add(new MenuOption(new Jakobi(), "6 Jakobi method"));
+            Options.Add(new MenuOption(new QRAlgorithm(), "7 QR algorithm"));
         }
         public void Run()
         {
@@ -55,6 +56,7 @@ namespace Lab_1.UI
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Encountered error: {ex.Message}");
+                        //Console.WriteLine(ex.ToString());
                     }
                     Console.WriteLine(Devider);
                     return true;
