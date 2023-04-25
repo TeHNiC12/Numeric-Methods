@@ -9,8 +9,9 @@
             Matrix.Print(input.A);
             if (Matrix.CheckSymmetry(input.A))
             {
-                (float[,] A, float[,] U) result = Solve(input.A);
+                (float[,] A, float[,] U, float Error) result = Solve(input.A);
                 int size = result.A.GetLength(0);
+                Console.WriteLine($"Final accuracy: {result.Error}");
                 Console.WriteLine("Eigenvalues:");
                 for (int i = 0; i < size; i++)
                 {
@@ -32,7 +33,7 @@
                 throw new Exception("Matrix A is not symmetrical");
             }
         }
-        private (float[,] A, float[,] U) Solve(float[,] A)
+        private (float[,] A, float[,] U, float Error) Solve(float[,] A)
         {
             int size = A.GetLength(0);
             float[,] TotalU = Matrix.CreateIdentity(size);
@@ -40,6 +41,7 @@
             bool PrintEach = PrintEachIterration();
             MatExt ACurAPrev = new();
             ACurAPrev.A = A;
+            float Error = 0;
             for (int k = 1; k > 0; k++)
             {
                 ACurAPrev.B = ACurAPrev.A;
@@ -48,7 +50,7 @@
                 float[,] U = GenerateU(size, coef.i, coef.j, Phi);
                 TotalU = Matrix.Multiply(TotalU, U);
                 ACurAPrev.A = Matrix.Multiply(Matrix.Multiply(Matrix.Transpose(U), ACurAPrev.B), U);
-                float Error = FindError(ACurAPrev.A);
+                Error = FindError(ACurAPrev.A);
                 if (Error <= Accuracy)
                 {
                     Console.WriteLine($"Solution found on step {k}\n");
@@ -60,9 +62,10 @@
                     Matrix.Print(U);
                     Console.WriteLine($"A({k})");
                     Matrix.Print(ACurAPrev.A);
+                    Console.WriteLine($"t(A{k}) = {Error}\n");
                 }
             }
-            return (ACurAPrev.A, TotalU);
+            return (ACurAPrev.A, TotalU, Error);
         }
         private float FindError(float[,] A)
         {
