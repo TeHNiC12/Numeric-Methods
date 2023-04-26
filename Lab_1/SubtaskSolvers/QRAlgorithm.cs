@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Lab_1.SubtaskSolvers
+﻿namespace Lab_1.SubtaskSolvers
 {
     public class QRAlgorithm : SubTask<Mat>
     {
@@ -52,7 +50,7 @@ namespace Lab_1.SubtaskSolvers
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < i; j++)
-                Sum += (float)Math.Pow(A[i, j], 2);
+                    Sum += (float)Math.Pow(A[i, j], 2);
             }
             return (float)Math.Cbrt(Sum);
         }
@@ -67,7 +65,7 @@ namespace Lab_1.SubtaskSolvers
             for (int index = 0; index < size - 1; index++)
             {
                 float[,] B = Matrix.CreateEmpty(size, 1);
-                for (int i = index;  i < size; i++)
+                for (int i = index; i < size; i++)
                 {
                     B[i, 0] = QR.B[i, index];
                 }

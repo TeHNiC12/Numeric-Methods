@@ -1,4 +1,4 @@
-﻿namespace Lab_1
+﻿namespace Lab_2
 {
     public static class Matrix
     {
@@ -26,6 +26,33 @@
                 Console.Write("|\n");
             }
             Console.WriteLine(separatorH);
+        }
+        private static void Input(float[,] matrix, string name, bool inputAssist)
+        {
+            Console.WriteLine($"\nFill matrix {name} values");
+            int rows = matrix.GetLength(0);
+            int columns = matrix.GetLength(1);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (inputAssist)
+                    {
+                        Matrix.Print(matrix);
+                    }
+                    Console.Write($"Please input {name}[{i + 1},{j + 1}]: ");
+                    string coefInput = Console.ReadLine();
+                    float coef;
+                    while (!float.TryParse(coefInput, out coef))
+                    {
+                        Console.Write("Please try again: ");
+                        coefInput = Console.ReadLine();
+                    }
+                    matrix[i, j] = coef;
+                }
+            }
+            Console.WriteLine($"\nMatrix {name}:");
+            Matrix.Print(matrix);
         }
         public static float[,] CreateEmpty(int rows, int columns)
         {
