@@ -1,10 +1,17 @@
-﻿using Lab_2.UI;
-
-internal class Program
+namespace Lab_2
 {
-    private static void Main()
+    internal static class Program
     {
-        Menu menu = new();
-        menu.Run();
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Application.Run(new Menu());
+        }
     }
 }
