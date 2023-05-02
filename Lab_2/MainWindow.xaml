@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Lab_2"
         xmlns:viewModel="clr-namespace:Lab_2.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="600" Width="1000"
+        Height="520" Width="1050"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -72,22 +72,41 @@
 
             <Grid Grid.Column="1" 
                   HorizontalAlignment="Center"
-                  Width="340">
-                
-                <TextBox Width="195"
+                  Width="600">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="205"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         Width="195"
                          Height="30"
                          VerticalContentAlignment="Center"
-                         HorizontalAlignment="Left"
-                         Margin="5"
-                         Style="{StaticResource ModernParametrBox}"/>
+                         HorizontalAlignment="Center"
+                         Foreground="White"
+                         Style="{StaticResource TextBoxWatermark1}"
+                         Text="{Binding StAccuracy, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <Button Content="Решить уравнение"
+                <TextBox Grid.Column="1"
+                         Width="245"
+                         Height="30"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Foreground="White"
+                         Style="{StaticResource TextBoxWatermark2}"
+                         Text="{Binding StAB, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2"
+                        Content="Решить уравнение"
                         Width="130"
                         Height="30"
                         HorizontalAlignment="Right"
                         Foreground="Black"
                         FontSize="13"
-                        Style="{StaticResource ActionButtonTheme}"/>
+                        Style="{StaticResource ActionButtonTheme}"
+                        Command="{Binding CollectDataCommand}"/>
             </Grid>
 
             <ContentControl Grid.Row="1"

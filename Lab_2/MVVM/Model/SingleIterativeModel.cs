@@ -4,21 +4,69 @@ namespace Lab_2.MVVM.Model
 {
     public class SingleIterativeModel
     {
-        private double MainFunc(double d)
+        public double A;
+        public double B;
+        private double Q;
+
+        public (double X, int step) Solve(double Accuracy)
         {
-            return Math.Pow(4, d) - 5 * d - 2;
+            if (CheckIntervalCorrectness())
+            {
+                CalculateQ();
+                double xCur = (A + B) / 2;
+                double xPrev;
+                int step;
+                for (step = 1; step > 0; step++)
+                {
+                    xPrev = xCur;
+                    xCur = Phi(xPrev);
+                    if(((Q / (1- Q)) * Math.Abs(xCur - xPrev)) <= Accuracy)
+                    {
+                        break;
+                    }
+                }
+                return (xCur, step);
+            }
+            else
+            {
+                throw new Exception("Interval not correct");
+            }
         }
-        public double Func1(double d)
+        private bool CheckIntervalCorrectness()
         {
-            return Math.Pow(4, d);
+            if (Cond(A) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        public double Func2(double d)
+        private void CalculateQ()
         {
-            return 5 * d + 2;
+            double q = Math.Round(Math.Max(Math.Abs(DerivativePhi(A)), Math.Abs(DerivativePhi(B))), 2, MidpointRounding.AwayFromZero);
+            if (q > 0 & q < 1)
+            {
+                Q = q;
+            }
+            else
+            {
+                throw new Exception("q не удоветворяет требованиям: 0 < q < 1");
+            }
         }
-        private double PhiX(double d)
-        {
-            return 0;
-        }
+
+        public Func<double, double> Func1 = x => Math.Pow(4, x);
+        public Func<double, double> Func2 = x => 5 * x + 2;
+
+        /*private Func<double, double> Phi1 = x => (Math.Pow(4, x) - 2) / 5;
+        private Func<double, double> DerivativePhi1 = x => Math.Log(x) * Math.Pow(4, x) / 5;
+
+        private Func<double, double> Phi2 = x => Math.Log2(5 * x + 2) / 2;
+        private Func<double, double> DerivativePhi2 = x => 5 / (2 * Math.Log(2) * (5 * x + 2));*/
+
+        private Func<double, double> Cond = x => 5 * x + 2;
+        private Func<double, double> Phi = x => Math.Log2(5 * x + 2) / 2;
+        private Func<double, double> DerivativePhi = x => 5 / (2 * Math.Log(2) * (5 * x + 2));
     }
 }

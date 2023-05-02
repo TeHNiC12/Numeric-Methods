@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Fonts\" />
-    <Folder Include="Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
     <PackageReference Include="WpfMath" Version="1.1.0" />
   </ItemGroup>
