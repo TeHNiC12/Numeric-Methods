@@ -1,27 +1,20 @@
 ﻿using Lab_2.Core;
-using OxyPlot.Series;
+using Lab_2.MVVM.Model;
 using OxyPlot;
-using System;
+using OxyPlot.Series;
 
 namespace Lab_2.MVVM.ViewModel
 {
     public class SingleIterativeViewModel : ObservableObject
     {
-        public SingleIterativeViewModel() 
+        private SingleIterativeModel _singleIterativeM;
+        public SingleIterativeViewModel()
         {
-            this.MyModel = new PlotModel();
-            this.MyModel.Series.Add(new FunctionSeries(Func1, -1, 0, 0.001, "F1"));
-            this.MyModel.Series.Add(new FunctionSeries(Func2, -1, 0, 0.001, "F2"));
+            _singleIterativeM = new();
+            this.MyModel = new();
+            this.MyModel.Series.Add(new FunctionSeries(_singleIterativeM.Func1, -1, 2, 0.001, "F1"));
+            this.MyModel.Series.Add(new FunctionSeries(_singleIterativeM.Func2, -1, 2, 0.001, "F2"));
         }
         public PlotModel MyModel { get; private set; }
-
-        private double Func1(double d)
-        {
-            return Math.Exp(d);
-        }
-        private double Func2(double d)
-        {
-            return -5 * d - 2;
-        }
     }
 }

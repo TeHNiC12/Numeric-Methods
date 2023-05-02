@@ -1,11 +1,7 @@
 ﻿using Lab_2.Core;
-using OxyPlot.Series;
 using OxyPlot;
+using OxyPlot.Series;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_2.MVVM.ViewModel
 {

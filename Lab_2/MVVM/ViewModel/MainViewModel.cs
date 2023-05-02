@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Lab_2.Core;
+﻿using Lab_2.Core;
 
 namespace Lab_2.MVVM.ViewModel
 {
@@ -23,14 +17,14 @@ namespace Lab_2.MVVM.ViewModel
         public object CurrentView
         {
             get { return _currentView; }
-            set 
+            set
             {
                 _currentView = value;
                 OnPropertyChanged();
             }
         }
 
-        public MainViewModel() 
+        public MainViewModel()
         {
             SingleIterativeVM = new SingleIterativeViewModel();
             SingleGaussianVM = new SingleGaussianViewModel();
