@@ -1,0 +1,100 @@
+﻿<Window x:Class="Lab_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_2"
+        xmlns:viewModel="clr-namespace:Lab_2.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="600" Width="1000"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#171720"
+            CornerRadius="15">
+        
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Лабораторная №2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"
+                       Foreground="White"/>
+
+            <StackPanel Grid.Row="1">
+
+                <RadioButton Content="Простая итерация&#x0a;Уравнение"
+                             Height ="60"
+                             Foreground="White"
+                             FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding SingleIterativeCommand}"/>
+
+                <RadioButton Content="Метод Ньютона&#x0a;Уравнение"
+                             Height ="60"
+                             Foreground="White"
+                             FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding SingleGaussianCommand}"/>
+
+                <RadioButton Content="Простая итерация&#x0a;Система уравнений"
+                             Height ="60"
+                             Foreground="White"
+                             FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Метод Ньютона&#x0a;Система уравнений"
+                             Height ="60"
+                             Foreground="White"
+                             FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+            </StackPanel>
+
+            <Grid Grid.Column="1" 
+                  HorizontalAlignment="Center"
+                  Width="340">
+                
+                <TextBox Width="195"
+                         Height="30"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Margin="5"
+                         Style="{StaticResource ModernParametrBox}"/>
+
+                <Button Content="Решить уравнение"
+                        Width="130"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        Foreground="Black"
+                        FontSize="13"
+                        Style="{StaticResource ActionButtonTheme}"/>
+            </Grid>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="5"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+        
+    </Border>
+    
+</Window>
