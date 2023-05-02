@@ -1,13 +1,17 @@
 ﻿using Lab_2.Core;
-using OxyPlot.Series;
 using OxyPlot;
+using OxyPlot.Series;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Lab_2.MVVM.ViewModel
 {
-    public class SingleIterativeViewModel : ObservableObject
+    public class MultyIteratveViewModel : ObservableObject
     {
-        public SingleIterativeViewModel() 
+        public MultyIteratveViewModel()
         {
             this.MyModel = new PlotModel();
             this.MyModel.Series.Add(new FunctionSeries(Func1, -1, 0, 0.001, "F1"));
@@ -21,7 +25,7 @@ namespace Lab_2.MVVM.ViewModel
         }
         private double Func2(double d)
         {
-            return -5 * d - 2;
+            return -3 * d - 2;
         }
     }
 }

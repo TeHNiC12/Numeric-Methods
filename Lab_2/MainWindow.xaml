@@ -58,13 +58,15 @@
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MultyIterativeCommand}"/>
 
                 <RadioButton Content="Метод Ньютона&#x0a;Система уравнений"
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MultyGaussianCommand}"/>
 
             </StackPanel>
 

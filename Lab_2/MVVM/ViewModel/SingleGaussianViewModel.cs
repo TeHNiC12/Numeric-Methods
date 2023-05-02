@@ -9,7 +9,7 @@ using OxyPlot.Series;
 
 namespace Lab_2.MVVM.ViewModel
 {
-    class SingleGaussianViewModel : ObservableObject
+    public class SingleGaussianViewModel : ObservableObject
     {
         public SingleGaussianViewModel() 
         {
@@ -24,7 +24,7 @@ namespace Lab_2.MVVM.ViewModel
         }
         private double Func2(double d)
         {
-            return -5 * d - 2;
+            return -1 * d - 2;
         }
     }
 }

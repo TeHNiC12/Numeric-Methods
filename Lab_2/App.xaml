@@ -21,6 +21,12 @@
             <DataTemplate DataType="{x:Type viewModel:SingleGaussianViewModel}">
                 <view:SingleGaussianView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MultyIteratveViewModel}">
+                <view:MultyIterativeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MultyGaussianViewModel}">
+                <view:MultyGaussianView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
