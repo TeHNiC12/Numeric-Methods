@@ -7,7 +7,7 @@ namespace Lab_2.MVVM.ViewModel
 {
     public class MultyGaussianViewModel : ObservableObject
     {
-        public MultyGaussianViewModel()
+        public MultyGaussianViewModel ()
         {
             this.MyModel = new PlotModel();
             this.MyModel.Series.Add(new FunctionSeries(Func1, -1, 0, 0.001, "F1"));
@@ -15,11 +15,11 @@ namespace Lab_2.MVVM.ViewModel
         }
         public PlotModel MyModel { get; private set; }
 
-        private double Func1(double d)
+        private double Func1 (double d)
         {
             return Math.Exp(d);
         }
-        private double Func2(double d)
+        private double Func2 (double d)
         {
             return -10 * d - 2;
         }

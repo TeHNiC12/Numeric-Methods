@@ -7,7 +7,7 @@ namespace Lab_2.MVVM.View
     /// </summary>
     public partial class MultyIterativeView : UserControl
     {
-        public MultyIterativeView()
+        public MultyIterativeView ()
         {
             InitializeComponent();
         }

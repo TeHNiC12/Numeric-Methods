@@ -2,7 +2,7 @@
 {
     public static class Matrix
     {
-        public static void Print(float[,] A)
+        public static void Print (float[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -27,7 +27,7 @@
             }
             Console.WriteLine(separatorH);
         }
-        public static float[,] CreateEmpty(int rows, int columns)
+        public static float[,] CreateEmpty (int rows, int columns)
         {
             float[,] A = new float[rows, columns];
             for (int i = 0; i < rows; i++)
@@ -39,7 +39,7 @@
             }
             return A;
         }
-        public static float[,] CreateIdentity(int size)
+        public static float[,] CreateIdentity (int size)
         {
             float[,] A = new float[size, size];
             for (int i = 0; i < size; i++)
@@ -58,7 +58,7 @@
             }
             return A;
         }
-        public static float[,] Add(float[,] A, float[,] B)
+        public static float[,] Add (float[,] A, float[,] B)
         {
             if ((A.GetLength(0) == B.GetLength(0)) & (A.GetLength(1) == B.GetLength(1)))
             {
@@ -79,7 +79,7 @@
                 throw new Exception("Can't add matrices: size does not match");
             }
         }
-        public static float[,] Subtract(float[,] A, float[,] B)
+        public static float[,] Subtract (float[,] A, float[,] B)
         {
             if ((A.GetLength(0) == B.GetLength(0)) & (A.GetLength(1) == B.GetLength(1)))
             {
@@ -100,7 +100,7 @@
                 throw new Exception("Can't subtract matrices: size does not match");
             }
         }
-        public static float[,] Multiply(float[,] A, float[,] B)
+        public static float[,] Multiply (float[,] A, float[,] B)
         {
             if (A.GetLength(1) == B.GetLength(0))
             {
@@ -125,7 +125,7 @@
                 throw new Exception("Can't multiply matrices: A columns amount doesn't match B rows count");
             }
         }
-        public static float[,] Multiply(float c, float[,] A)
+        public static float[,] Multiply (float c, float[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -139,7 +139,7 @@
             }
             return B;
         }
-        public static float[,] Transpose(float[,] A)
+        public static float[,] Transpose (float[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -153,7 +153,7 @@
             }
             return A_T;
         }
-        public static bool CheckSymmetry(float[,] A)
+        public static bool CheckSymmetry (float[,] A)
         {
             if (Compare(A, Transpose(A)))
             {
@@ -164,7 +164,7 @@
                 return false;
             }
         }
-        public static bool Compare(float[,] A, float[,] B)
+        public static bool Compare (float[,] A, float[,] B)
         {
             if ((A.GetLength(0) == B.GetLength(0)) & (A.GetLength(1) == B.GetLength(1)))
             {
@@ -187,7 +187,7 @@
                 return false;
             }
         }
-        private static float[,] CreateMinorMatrix(float[,] A, int row, int column)
+        private static float[,] CreateMinorMatrix (float[,] A, int row, int column)
         {
             int size = A.GetLength(0);
             float[,] M = CreateEmpty(size - 1, size - 1);
@@ -224,11 +224,11 @@
             }
             return M;
         }
-        public static float Minor(float[,] A, int row, int column)
+        public static float Minor (float[,] A, int row, int column)
         {
             return Determinant(CreateMinorMatrix(A, row, column));
         }
-        public static float Determinant(float[,] A)
+        public static float Determinant (float[,] A)
         {
             if (A.GetLength(0) == A.GetLength(1))
             {
@@ -263,7 +263,7 @@
                 throw new Exception("Matrix isn't sqare");
             }
         }
-        public static float[,] Invert(float[,] A)
+        public static float[,] Invert (float[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -299,7 +299,7 @@
                 throw new Exception("Matrix isn't square");
             }
         }
-        public static void SwichString(MatExt input, int st1, int st2)
+        public static void SwichString (MatExt input, int st1, int st2)
         {
             int A_columns = input.A.GetLength(1);
             int B_columns = input.B.GetLength(1);
@@ -317,7 +317,7 @@
                 input.B[st2, i] = temp;
             }
         }
-        public static MatExt AlphaBetaTransform(MatExt input)
+        public static MatExt AlphaBetaTransform (MatExt input)
         {
             if (Matrix.Determinant(input.A) == 0)
             {
@@ -350,7 +350,7 @@
                 return AlphaBeta;
             }
         }
-        private static void FixDiagonal(MatExt input)
+        private static void FixDiagonal (MatExt input)
         {
             int size = input.A.GetLength(0);
             for (int i = 0; i < size; i++)
@@ -377,7 +377,7 @@
                 }
             }
         }
-        private static bool CheckSwichCompatability(float[,] A, int currentI, int checkI)
+        private static bool CheckSwichCompatability (float[,] A, int currentI, int checkI)
         {
             if ((A[currentI, checkI] != 0) & (A[checkI, currentI] != 0))
             {
@@ -388,7 +388,7 @@
                 return false;
             }
         }
-        private static bool SwichDown(MatExt input, int i)
+        private static bool SwichDown (MatExt input, int i)
         {
             bool swichflag = false;
             for (int j = i + 1; j < input.A.GetLength(0); j++)
@@ -401,7 +401,7 @@
             }
             return swichflag;
         }
-        private static bool SwichUp(MatExt input, int i)
+        private static bool SwichUp (MatExt input, int i)
         {
             bool swichflag = false;
             for (int j = i - 1; j >= 0; j--)
@@ -414,7 +414,7 @@
             }
             return swichflag;
         }
-        public static float NormAc(float[,] A)
+        public static float NormAc (float[,] A)
         {
             float norm = 0;
             for (int i = 0; i < A.GetLength(0); i++)
@@ -431,7 +431,7 @@
             }
             return norm;
         }
-        public static float NormA2(float[,] A)
+        public static float NormA2 (float[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -443,7 +443,7 @@
                     sum += A[i, j] * A[i, j];
                 }
             }
-            return (float)Math.Sqrt(sum);
+            return (float) Math.Sqrt(sum);
         }
     }
 }

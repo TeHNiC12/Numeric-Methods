@@ -4,12 +4,12 @@ namespace Lab_1.UI
 {
     public class MenuOption
     {
-        public MenuOption(object solver, string optionText)
+        public MenuOption (object solver, string optionText)
         {
             Solver = solver;
             OptionText = optionText;
         }
-        public void SolveDefault()
+        public void SolveDefault ()
         {
             DefaultValues defaultValues = new();
             if (Solver is LUDecomposition)
@@ -42,7 +42,7 @@ namespace Lab_1.UI
             }
             Solve();
         }
-        public void SolveCustom(bool InputAssist)
+        public void SolveCustom (bool InputAssist)
         {
             if (Solver is LUDecomposition)
             {
@@ -74,38 +74,38 @@ namespace Lab_1.UI
             }
             Solve();
         }
-        private void Solve()
+        private void Solve ()
         {
             if (Solver is LUDecomposition)
             {
-                ((LUDecomposition)Solver).Execute((MatExt)TaskData);
+                ((LUDecomposition) Solver).Execute((MatExt) TaskData);
             }
             else if (Solver is Rundown)
             {
-                ((Rundown)Solver).Execute((MatExt)TaskData);
+                ((Rundown) Solver).Execute((MatExt) TaskData);
             }
             else if (Solver is Gaussian)
             {
-                ((Gaussian)Solver).Execute((MatExt)TaskData);
+                ((Gaussian) Solver).Execute((MatExt) TaskData);
             }
             else if (Solver is Iterative)
             {
-                ((Iterative)Solver).Execute((MatExt)TaskData);
+                ((Iterative) Solver).Execute((MatExt) TaskData);
             }
             else if (Solver is Zeidel)
             {
-                ((Zeidel)Solver).Execute((MatExt)TaskData);
+                ((Zeidel) Solver).Execute((MatExt) TaskData);
             }
             else if (Solver is Jakobi)
             {
-                ((Jakobi)Solver).Execute((Mat)TaskData);
+                ((Jakobi) Solver).Execute((Mat) TaskData);
             }
             else if (Solver is QRAlgorithm)
             {
-                ((QRAlgorithm)Solver).Execute((Mat)TaskData);
+                ((QRAlgorithm) Solver).Execute((Mat) TaskData);
             }
         }
-        public void DisplayOption()
+        public void DisplayOption ()
         {
             Console.WriteLine($"\t{OptionText}");
         }

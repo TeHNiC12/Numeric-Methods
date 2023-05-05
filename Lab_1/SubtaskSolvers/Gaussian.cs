@@ -2,7 +2,7 @@
 {
     public class Gaussian : SubTask<MatExt>
     {
-        public override void Execute(MatExt input)
+        public override void Execute (MatExt input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Matrix A:");
@@ -22,7 +22,7 @@
                 Console.WriteLine($"X{i + 1} = {result[i]:f}");
             }
         }
-        private void GaussianTransform(MatExt input)
+        private void GaussianTransform (MatExt input)
         {
             int size = input.A.GetLength(0);
             int columns_A = input.A.GetLength(1);
@@ -46,7 +46,7 @@
                 }
             }
         }
-        private float[] GaussianSolve(MatExt input)
+        private float[] GaussianSolve (MatExt input)
         {
             int size = input.A.GetLength(0);
             float[] X = new float[size];

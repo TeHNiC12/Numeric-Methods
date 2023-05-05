@@ -8,7 +8,7 @@ namespace Lab_2.MVVM.Model
         public double B;
         private double Q;
 
-        public (double X, int step) Solve(double Accuracy)
+        public (double X, int step) Solve (double Accuracy)
         {
             if (CheckIntervalCorrectness())
             {
@@ -20,7 +20,7 @@ namespace Lab_2.MVVM.Model
                 {
                     xPrev = xCur;
                     xCur = Phi(xPrev);
-                    if(((Q / (1- Q)) * Math.Abs(xCur - xPrev)) <= Accuracy)
+                    if (((Q / (1 - Q)) * Math.Abs(xCur - xPrev)) <= Accuracy)
                     {
                         break;
                     }
@@ -32,7 +32,7 @@ namespace Lab_2.MVVM.Model
                 throw new Exception("Interval not correct");
             }
         }
-        private bool CheckIntervalCorrectness()
+        private bool CheckIntervalCorrectness ()
         {
             if (Cond(A) > 0)
             {
@@ -43,7 +43,7 @@ namespace Lab_2.MVVM.Model
                 return false;
             }
         }
-        private void CalculateQ()
+        private void CalculateQ ()
         {
             double q = Math.Round(Math.Max(Math.Abs(DerivativePhi(A)), Math.Abs(DerivativePhi(B))), 2, MidpointRounding.AwayFromZero);
             if (q > 0 & q < 1)

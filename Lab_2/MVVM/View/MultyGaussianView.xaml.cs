@@ -7,7 +7,7 @@ namespace Lab_2.MVVM.View
     /// </summary>
     public partial class MultyGaussianView : UserControl
     {
-        public MultyGaussianView()
+        public MultyGaussianView ()
         {
             InitializeComponent();
         }

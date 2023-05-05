@@ -4,7 +4,7 @@ namespace Lab_1.UI
 {
     public class Menu
     {
-        public Menu()
+        public Menu ()
         {
             Options.Add(new MenuOption(new LUDecomposition(), "1 LU Decomposition"));
             Options.Add(new MenuOption(new Gaussian(), "2 Gaussian method"));
@@ -14,7 +14,7 @@ namespace Lab_1.UI
             Options.Add(new MenuOption(new Jakobi(), "6 Jakobi method"));
             Options.Add(new MenuOption(new QRAlgorithm(), "7 QR algorithm"));
         }
-        public void Run()
+        public void Run ()
         {
             while (true)
             {
@@ -25,13 +25,14 @@ namespace Lab_1.UI
                 }
             }
         }
-        private void DisplayOptions()
+        private void DisplayOptions ()
         {
             Console.WriteLine("Menu:");
             Console.WriteLine("\t0 Exit");
-            foreach (var option in Options) option.DisplayOption();
+            foreach (var option in Options)
+                option.DisplayOption();
         }
-        private bool RunSelector()
+        private bool RunSelector ()
         {
             Console.Write("Input: ");
             string selectedOption = Console.ReadLine();
@@ -68,7 +69,7 @@ namespace Lab_1.UI
                 return true;
             }
         }
-        private void OnSelection(int SelectedOption)
+        private void OnSelection (int SelectedOption)
         {
             if (YesNoSelector("Would you like to use standard values?"))
             {
@@ -86,7 +87,7 @@ namespace Lab_1.UI
                 }
             }
         }
-        private bool YesNoSelector(string Question)
+        private bool YesNoSelector (string Question)
         {
             Console.Write($"{Question} (Y/N) ");
             string res = Console.ReadLine();

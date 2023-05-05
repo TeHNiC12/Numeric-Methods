@@ -2,7 +2,7 @@
 {
     public static class InputHandlers
     {
-        public static Mat A(bool InputAssist)
+        public static Mat A (bool InputAssist)
         {
             Console.Write("Input matrix size: ");
             string sizeInput = Console.ReadLine();
@@ -19,7 +19,7 @@
             InputMatrix(tCond.A, "A", InputAssist);
             return tCond;
         }
-        public static MatExt AB(bool InputAssist)
+        public static MatExt AB (bool InputAssist)
         {
             Console.Write("Input amount of variables: ");
             string sizeInput = Console.ReadLine();
@@ -38,7 +38,7 @@
             InputMatrix(tCond.B, "B", InputAssist);
             return tCond;
         }
-        public static MatExt ABC_D(bool InputAssist)
+        public static MatExt ABC_D (bool InputAssist)
         {
             Console.Write("Input amount of variables: ");
             string sizeInput = Console.ReadLine();
@@ -94,7 +94,7 @@
             InputMatrix(tCond.B, "D", InputAssist);
             return tCond;
         }
-        private static void InputMatrix(float[,] matrix, string name, bool inputAssist)
+        private static void InputMatrix (float[,] matrix, string name, bool inputAssist)
         {
             Console.WriteLine($"\nFill matrix {name} values");
             int rows = matrix.GetLength(0);

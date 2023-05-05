@@ -15,8 +15,8 @@ namespace Lab_2.MVVM.ViewModel
         public string Result
         {
             get { return _result; }
-            set 
-            { 
+            set
+            {
                 _result = value;
                 OnPropertyChanged();
             }
@@ -27,13 +27,13 @@ namespace Lab_2.MVVM.ViewModel
         public double B { get; set; }
         public PlotModel? PlotModel { get; private set; }
 
-        public SingleIterativeViewModel()
+        public SingleIterativeViewModel ()
         {
             _singleIterativeM = new();
             InitializePlotModel();
         }
 
-        public void Solve()
+        public void Solve ()
         {
             try
             {
@@ -47,11 +47,11 @@ namespace Lab_2.MVVM.ViewModel
                 MessageBox.Show(ex.Message);
             }
         }
-        private void SetResult(double X, int step)
+        private void SetResult (double X, int step)
         {
             Result = String.Format("Корень X = {0} был найден на {1} итерации", Math.Round(X, 4), step);
         }
-        private void InitializePlotModel()
+        private void InitializePlotModel ()
         {
             PlotModel = new();
             PlotModel.Series.Add(new FunctionSeries(_singleIterativeM.Func1, -1, 2, 0.001, "F1"));

@@ -2,7 +2,7 @@
 
 internal class Program
 {
-    private static void Main()
+    private static void Main ()
     {
         Menu menu = new();
         menu.Run();

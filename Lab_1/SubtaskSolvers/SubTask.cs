@@ -2,6 +2,6 @@
 {
     public abstract class SubTask<T> where T : struct
     {
-        public abstract void Execute(T obj);
+        public abstract void Execute (T obj);
     }
 }

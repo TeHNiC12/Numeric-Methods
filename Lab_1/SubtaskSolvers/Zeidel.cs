@@ -2,7 +2,7 @@
 {
     internal class Zeidel : SubTask<MatExt>
     {
-        public override void Execute(MatExt input)
+        public override void Execute (MatExt input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Matrix A:");
@@ -32,17 +32,17 @@
                 Console.WriteLine($"X{i + 1} = {X[i, 0]:0.0000}");
             }
         }
-        private float FindErrorNormal(MatExt XCurXPrev, float[,] Alpha, float[,] C)
+        private float FindErrorNormal (MatExt XCurXPrev, float[,] Alpha, float[,] C)
         {
             float Error = Matrix.NormAc(C) * Matrix.NormAc(Matrix.Subtract(XCurXPrev.A, XCurXPrev.B)) / (1 - Matrix.NormAc(Alpha));
             return Error;
         }
-        private float FindErrorCondNotMet(MatExt XCurXPrev)
+        private float FindErrorCondNotMet (MatExt XCurXPrev)
         {
             float Error = Matrix.NormAc(Matrix.Subtract(XCurXPrev.A, XCurXPrev.B));
             return Error;
         }
-        private float[,] Solve(MatExt AlphaBeta, bool ConditionMet)
+        private float[,] Solve (MatExt AlphaBeta, bool ConditionMet)
         {
             float Accuracy = RequestAccuracy();
             bool PrintEach = PrintEachIterration();
@@ -77,7 +77,7 @@
             }
             return XCurXPrev.A;
         }
-        private MatExt SplitAlphaToBC(float[,] Alpha)
+        private MatExt SplitAlphaToBC (float[,] Alpha)
         {
             int size = Alpha.GetLength(0);
             MatExt BC = new()
@@ -105,7 +105,7 @@
             }
             return BC;
         }
-        private float RequestAccuracy()
+        private float RequestAccuracy ()
         {
             Console.Write("Please input accuracy: ");
             string accuracy = Console.ReadLine();
@@ -118,7 +118,7 @@
             Console.Write("\n");
             return Accuracy;
         }
-        private bool PrintEachIterration()
+        private bool PrintEachIterration ()
         {
             Console.Write("Show each iteration? (Y/N) ");
             string res = Console.ReadLine();

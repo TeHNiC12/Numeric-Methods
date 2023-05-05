@@ -2,7 +2,7 @@
 {
     public class Rundown : SubTask<MatExt>
     {
-        public override void Execute(MatExt input)
+        public override void Execute (MatExt input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Coefficients a b c:");
@@ -22,7 +22,7 @@
                 Console.WriteLine($"X{i + 1} = {result[i]:f}");
             }
         }
-        private MatExt FindPQ(MatExt input)
+        private MatExt FindPQ (MatExt input)
         {
             int size = input.A.GetLength(0);
             MatExt PQ = new()
@@ -45,7 +45,7 @@
             }
             return PQ;
         }
-        private float[] Solve(MatExt PQ)
+        private float[] Solve (MatExt PQ)
         {
             int size = PQ.A.GetLength(0);
             float[] X = new float[size];

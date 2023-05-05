@@ -7,7 +7,7 @@ namespace Lab_2.MVVM.View
     /// </summary>
     public partial class SingleIterativeView : UserControl
     {
-        public SingleIterativeView()
+        public SingleIterativeView ()
         {
             InitializeComponent();
         }

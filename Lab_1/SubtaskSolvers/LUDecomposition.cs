@@ -2,7 +2,7 @@
 {
     public class LUDecomposition : SubTask<MatExt>
     {
-        public override void Execute(MatExt input)
+        public override void Execute (MatExt input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Matrix A:");
@@ -25,7 +25,7 @@
                 Console.WriteLine($"X{i + 1} = {result[i]:f}");
             }
         }
-        private void LUDecompose(MatExt input)
+        private void LUDecompose (MatExt input)
         {
             int size = input.A.GetLength(0);
             int columns_A = input.A.GetLength(1);
@@ -48,7 +48,7 @@
                 }
             }
         }
-        private float[] LUSolve(MatExt input)
+        private float[] LUSolve (MatExt input)
         {
             int size = input.A.GetLength(0);
             float[] Z = new float[size];
@@ -74,7 +74,7 @@
             }
             return X;
         }
-        private float[,] GetL(float[,] LU)
+        private float[,] GetL (float[,] LU)
         {
             int size = LU.GetLength(0);
             float[,] L = Matrix.CreateEmpty(size, size);
@@ -98,7 +98,7 @@
             }
             return L;
         }
-        private float GetL(float[,] LU, int i, int j)
+        private float GetL (float[,] LU, int i, int j)
         {
             if (i < j)
             {
@@ -113,7 +113,7 @@
                 return 1;
             }
         }
-        private float[,] GetU(float[,] LU)
+        private float[,] GetU (float[,] LU)
         {
             int size = LU.GetLength(0);
             float[,] U = Matrix.CreateEmpty(size, size);
@@ -133,7 +133,7 @@
             }
             return U;
         }
-        private float GetU(float[,] LU, int i, int j)
+        private float GetU (float[,] LU, int i, int j)
         {
             if (i > j)
             {

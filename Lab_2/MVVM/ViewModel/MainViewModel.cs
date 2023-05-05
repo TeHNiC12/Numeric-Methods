@@ -43,7 +43,7 @@ namespace Lab_2.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public MainViewModel()
+        public MainViewModel ()
         {
             StAB = string.Empty;
             StAccuracy = string.Empty;
@@ -81,23 +81,23 @@ namespace Lab_2.MVVM.ViewModel
                 }
             });
         }
-        public bool CollectData()
+        public bool CollectData ()
         {
             if (!(CollectAccuracy() | CollectAB()))
             {
                 MessageBox.Show("Пожалуйста проверьте введенные данные");
                 return false;
             }
-            else 
-            { 
-                return true; 
+            else
+            {
+                return true;
             }
         }
-        public bool CollectAccuracy()
+        public bool CollectAccuracy ()
         {
             return double.TryParse(_stAccuracy, out _accuracy);
         }
-        public bool CollectAB()
+        public bool CollectAB ()
         {
             if (StAB.Contains(";"))
             {

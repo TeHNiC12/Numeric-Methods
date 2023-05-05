@@ -2,7 +2,7 @@
 {
     public class Jakobi : SubTask<Mat>
     {
-        public override void Execute(Mat input)
+        public override void Execute (Mat input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Matrix A:");
@@ -33,7 +33,7 @@
                 throw new Exception("Matrix A is not symmetrical");
             }
         }
-        private (float[,] A, float[,] U, float Error) Solve(float[,] A)
+        private (float[,] A, float[,] U, float Error) Solve (float[,] A)
         {
             int size = A.GetLength(0);
             float[,] TotalU = Matrix.CreateIdentity(size);
@@ -67,7 +67,7 @@
             }
             return (ACurAPrev.A, TotalU, Error);
         }
-        private float FindError(float[,] A)
+        private float FindError (float[,] A)
         {
             int size = A.GetLength(0);
             float Sum = 0;
@@ -75,34 +75,34 @@
             {
                 for (int j = size - 1; j > i; j--)
                 {
-                    Sum += (float)Math.Pow(A[i, j], 2);
+                    Sum += (float) Math.Pow(A[i, j], 2);
                 }
             }
-            return (float)Math.Cbrt(Sum);
+            return (float) Math.Cbrt(Sum);
         }
-        private float[,] GenerateU(int size, int i, int j, float Phi)
+        private float[,] GenerateU (int size, int i, int j, float Phi)
         {
             float[,] U = Matrix.CreateIdentity(size);
-            U[i, i] = (float)Math.Cos(Phi);
-            U[i, j] = (float)-Math.Sin(Phi);
-            U[j, i] = (float)Math.Sin(Phi);
-            U[j, j] = (float)Math.Cos(Phi);
+            U[i, i] = (float) Math.Cos(Phi);
+            U[i, j] = (float) -Math.Sin(Phi);
+            U[j, i] = (float) Math.Sin(Phi);
+            U[j, j] = (float) Math.Cos(Phi);
             return U;
         }
-        private float CalculatePhi(float[,] A, int i, int j)
+        private float CalculatePhi (float[,] A, int i, int j)
         {
             float Phi = 0;
             if (A[i, i] == A[j, j])
             {
-                Phi = (float)(Math.PI / 4);
+                Phi = (float) (Math.PI / 4);
             }
             else
             {
-                Phi = (float)(0.5 * Math.Atan(2 * A[i, j] / (A[i, i] - A[j, j])));
+                Phi = (float) (0.5 * Math.Atan(2 * A[i, j] / (A[i, i] - A[j, j])));
             }
             return Phi;
         }
-        private (int i, int j) FindUpperTriangleMax(float[,] A)
+        private (int i, int j) FindUpperTriangleMax (float[,] A)
         {
             int size = A.GetLength(0);
             float MaxValueAbs = -1;
@@ -125,7 +125,7 @@
             }
             return (iMax, jMax);
         }
-        private float RequestAccuracy()
+        private float RequestAccuracy ()
         {
             Console.Write("Please input accuracy: ");
             string accuracy = Console.ReadLine();
@@ -138,7 +138,7 @@
             Console.Write("\n");
             return Accuracy;
         }
-        private bool PrintEachIterration()
+        private bool PrintEachIterration ()
         {
             Console.Write("Show each iteration? (Y/N) ");
             string res = Console.ReadLine();

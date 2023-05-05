@@ -2,7 +2,7 @@
 {
     public class QRAlgorithm : SubTask<Mat>
     {
-        public override void Execute(Mat input)
+        public override void Execute (Mat input)
         {
             Console.WriteLine("Task Conditions:");
             Console.WriteLine("Matrix A:");
@@ -17,7 +17,7 @@
                 Console.WriteLine($"Lambda{i + 1} = {res.A[i, i]:0.0000}");
             }
         }
-        private (float[,] A, float error) Solve(float[,] A)
+        private (float[,] A, float error) Solve (float[,] A)
         {
             float Accuracy = RequestAccuracy();
             bool PrintEach = PrintEachIterration();
@@ -43,18 +43,18 @@
             }
             return (ACurrent, Error);
         }
-        private float FindError(float[,] A)
+        private float FindError (float[,] A)
         {
             int size = A.GetLength(0);
             float Sum = 0;
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < i; j++)
-                    Sum += (float)Math.Pow(A[i, j], 2);
+                    Sum += (float) Math.Pow(A[i, j], 2);
             }
-            return (float)Math.Cbrt(Sum);
+            return (float) Math.Cbrt(Sum);
         }
-        private MatExt QRDecomposition(float[,] A)
+        private MatExt QRDecomposition (float[,] A)
         {
             int size = A.GetLength(0);
             MatExt QR = new()
@@ -75,7 +75,7 @@
             }
             return QR;
         }
-        private float[,] CreateHouseholder(float[,] B, int index)
+        private float[,] CreateHouseholder (float[,] B, int index)
         {
             int size = B.GetLength(0);
             float[,] V = CreateV(B, index);
@@ -84,18 +84,18 @@
             float[,] H = Matrix.Add(Matrix.CreateIdentity(size), Matrix.Multiply(coef, VVt));
             return H;
         }
-        private float[,] CreateV(float[,] B, int index)
+        private float[,] CreateV (float[,] B, int index)
         {
             float[,] V = Matrix.Add(B, Matrix.Multiply(Math.Sign(B[index, 0]) * Matrix.NormA2(B), CreateE(B.GetLength(0), index)));
             return V;
         }
-        private float[,] CreateE(int Size, int index)
+        private float[,] CreateE (int Size, int index)
         {
             float[,] E = Matrix.CreateEmpty(Size, 1);
             E[index, 0] = 1;
             return E;
         }
-        private float RequestAccuracy()
+        private float RequestAccuracy ()
         {
             Console.Write("Please input accuracy: ");
             string accuracy = Console.ReadLine();
@@ -108,7 +108,7 @@
             Console.Write("\n");
             return Accuracy;
         }
-        private bool PrintEachIterration()
+        private bool PrintEachIterration ()
         {
             Console.Write("Show each iteration? (Y/N) ");
             string res = Console.ReadLine();
