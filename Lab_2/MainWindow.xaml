@@ -20,26 +20,28 @@
             CornerRadius="15">
         
         <Grid>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <TextBlock Text="Лабораторная №2"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="20"
-                       Foreground="White"/>
 
-            <StackPanel Grid.Row="1">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0"
+                           Text="Лабораторная №2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="20"
+                           Foreground="White"/>
 
-                <RadioButton Content="Простая итерация&#x0a;Уравнение"
+                <StackPanel Grid.Row="1">
+
+                    <RadioButton Content="Простая итерация&#x0a;Уравнение"
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
@@ -47,72 +49,32 @@
                              IsChecked="True"
                              Command="{Binding SingleIterativeCommand}"/>
 
-                <RadioButton Content="Метод Ньютона&#x0a;Уравнение"
+                    <RadioButton Content="Метод Ньютона&#x0a;Уравнение"
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding SingleGaussianCommand}"/>
 
-                <RadioButton Content="Простая итерация&#x0a;Система уравнений"
+                    <RadioButton Content="Простая итерация&#x0a;Система уравнений"
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding MultyIterativeCommand}"/>
 
-                <RadioButton Content="Метод Ньютона&#x0a;Система уравнений"
+                    <RadioButton Content="Метод Ньютона&#x0a;Система уравнений"
                              Height ="60"
                              Foreground="White"
                              FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding MultyGaussianCommand}"/>
 
-            </StackPanel>
+                </StackPanel>
 
-            <Grid Grid.Column="1" 
-                  HorizontalAlignment="Center"
-                  Width="600">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="205"/>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Grid.Column="0"
-                         Width="195"
-                         Height="30"
-                         HorizontalContentAlignment="Center"
-                         VerticalContentAlignment="Center"
-                         HorizontalAlignment="Center"
-                         Foreground="White"
-                         Style="{StaticResource TextBoxWatermark1}"
-                         Text="{Binding StAccuracy, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <TextBox Grid.Column="1"
-                         Width="245"
-                         Height="30"
-                         HorizontalContentAlignment="Center"
-                         VerticalContentAlignment="Center"
-                         HorizontalAlignment="Center"
-                         Foreground="White"
-                         Style="{StaticResource TextBoxWatermark2}"
-                         Text="{Binding StAB, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <Button Grid.Column="2"
-                        Content="Решить уравнение"
-                        Width="130"
-                        Height="30"
-                        HorizontalAlignment="Right"
-                        Foreground="Black"
-                        FontSize="13"
-                        Style="{StaticResource ActionButtonTheme}"
-                        Command="{Binding CollectDataCommand}"/>
             </Grid>
 
-            <ContentControl Grid.Row="1"
-                            Grid.Column="1"
+            <ContentControl Grid.Column="1"
                             Margin="5"
                             Content="{Binding CurrentView}"/>
 

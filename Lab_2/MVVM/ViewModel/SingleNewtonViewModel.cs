@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace Lab_2.MVVM.ViewModel
 {
-    public class SingleIterativeViewModel : ObservableObject
+    public class SingleNewtonViewModel : ObservableObject
     {
-        private SingleIterativeModel _singleIterativeM;
+        private SingleNewtonModel _singleGaussianM;
         public RelayCommand CollectDataCommand { get; set; }
 
         private string _result;
@@ -41,11 +41,11 @@ namespace Lab_2.MVVM.ViewModel
             set { _stAccuracy = value; }
         }
 
-        public SingleIterativeViewModel ()
+        public SingleNewtonViewModel ()
         {
             StAB = string.Empty;
             StAccuracy = string.Empty;
-            _singleIterativeM = new();
+            _singleGaussianM = new();
             InitializePlotModel();
             CollectDataCommand = new RelayCommand(o =>
             {
@@ -60,9 +60,9 @@ namespace Lab_2.MVVM.ViewModel
         {
             try
             {
-                _singleIterativeM.A = A;
-                _singleIterativeM.B = B;
-                (double X, int step) res = _singleIterativeM.Solve(Accuracy);
+                _singleGaussianM.A = A;
+                _singleGaussianM.B = B;
+                (double X, int step) res = _singleGaussianM.Solve(Accuracy);
                 SetResult(res.X, res.step);
             }
             catch (Exception ex)
@@ -77,8 +77,8 @@ namespace Lab_2.MVVM.ViewModel
         private void InitializePlotModel ()
         {
             PlotModel = new();
-            PlotModel.Series.Add(new FunctionSeries(_singleIterativeM.Func1, -1, 2, 0.001, "F1"));
-            PlotModel.Series.Add(new FunctionSeries(_singleIterativeM.Func2, -1, 2, 0.001, "F2"));
+            PlotModel.Series.Add(new FunctionSeries(_singleGaussianM.Func1, -1, 2, 0.001, "F1"));
+            PlotModel.Series.Add(new FunctionSeries(_singleGaussianM.Func2, -1, 2, 0.001, "F2"));
         }
         public bool CollectData ()
         {

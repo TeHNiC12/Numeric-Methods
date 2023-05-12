@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace Lab_2.MVVM.ViewModel
 {
-    public class MultyIteratveViewModel : ObservableObject
+    public class MultyNewtonViewModel : ObservableObject
     {
-        private MultyIterativeModel _multyIterativeM;
+        private MultyNewtonModel _multyNewtonM;
         public RelayCommand CollectDataCommand { get; set; }
         private PlotModel plotModel;
         public PlotModel PlotModel
@@ -53,11 +53,11 @@ namespace Lab_2.MVVM.ViewModel
             set { _stAccuracy = value; }
         }
 
-        public MultyIteratveViewModel ()
+        public MultyNewtonViewModel ()
         {
             StBounds = string.Empty;
             StAccuracy = string.Empty;
-            _multyIterativeM = new();
+            _multyNewtonM = new();
             InitializePlotModel();
             CollectDataCommand = new RelayCommand(o =>
             {
@@ -72,12 +72,12 @@ namespace Lab_2.MVVM.ViewModel
         {
             try
             {
-                _multyIterativeM.X1L = X1L;
-                _multyIterativeM.X1R = X1R;
-                _multyIterativeM.X2L = X2L;
-                _multyIterativeM.X2R = X2R;
+                _multyNewtonM.X1L = X1L;
+                _multyNewtonM.X1R = X1R;
+                _multyNewtonM.X2L = X2L;
+                _multyNewtonM.X2R = X2R;
 
-                (double X1, double X2, int step) res = _multyIterativeM.Solve(Accuracy);
+                (double X1, double X2, int step) res = _multyNewtonM.Solve(Accuracy);
                 SetResult(res.X1, res.X2, res.step);
             }
             catch (Exception ex)
@@ -98,8 +98,8 @@ namespace Lab_2.MVVM.ViewModel
             PM.Series.Add(series2);*/
             PM.Axes.Add(new OxyPlot.Axes.LinearAxis { Position = OxyPlot.Axes.AxisPosition.Bottom, ExtraGridlines = new double[] { 0 }, ExtraGridlineThickness = 1, ExtraGridlineColor = OxyColors.Black, });
             PM.Axes.Add(new OxyPlot.Axes.LinearAxis { Position = OxyPlot.Axes.AxisPosition.Left, ExtraGridlines = new double[] { 0 }, ExtraGridlineThickness = 1, ExtraGridlineColor = OxyColors.Black, });
-            PM.Series.Add(new FunctionSeries(_multyIterativeM.Func1, -0.4, 0.4, 0.001, "f1(x1, x2)"));
-            PM.Series.Add(new FunctionSeries(_multyIterativeM.Func2, -1, 1, 0.001, "f2(x1, x2)"));
+            PM.Series.Add(new FunctionSeries(_multyNewtonM.Func1, -0.4, 0.4, 0.001, "f1(x1, x2)"));
+            PM.Series.Add(new FunctionSeries(_multyNewtonM.Func2, -1, 1, 0.001, "f2(x1, x2)"));
             PlotModel = PM;
         }
         public bool CollectData ()

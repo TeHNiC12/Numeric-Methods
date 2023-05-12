@@ -13,109 +13,135 @@
     <UserControl.DataContext>
         <viewModel:SingleIterativeViewModel/>
     </UserControl.DataContext>
+
     <Border Background="#FF15151D"
             CornerRadius="15">
-        <StackPanel>
-            <Grid Height="250"
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+
+                <TextBox Width="195"
+                         Height="30"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Foreground="White"
+                         Style="{StaticResource TextBoxWatermark1}"
+                         Text="{Binding StAccuracy, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox Width="245"
+                         Height="30"
+                         Margin="15,0,15,0"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Foreground="White"
+                         Style="{StaticResource TextBoxWatermark2}"
+                         Text="{Binding StAB, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Content="Решить уравнение"
+                        Width="130"
+                        Height="30"
+                        Foreground="Black"
+                        FontSize="13"
+                        Style="{StaticResource ActionButtonTheme}"
+                        Command="{Binding CollectDataCommand}"/>
+
+            </StackPanel>
+
+            <Grid Grid.Row="1"
                   Margin="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="340"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" 
+                                Orientation="Horizontal">
+                        
+                        <TextBlock Text="Найти:"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Foreground="White"
+                                   Margin="0,0,15,0"/>
+
+                        <controls:FormulaControl Formula="f(x)=4^{x}-5x-2=0"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="18"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal">
+                        
+                        <TextBlock Text="На графике:"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   FontSize="18"
+                                   Foreground="White"
+                                   Margin="0,0,15,0"/>
+
+                        <controls:FormulaControl Formula="F_{1}=4^{x}"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="White"
+                                                 Margin="0,0,15,0"
+                                                 FontSize="18"/>
+
+                        <controls:FormulaControl Formula="F_{2}=5x+2"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="White"
+                                                 FontSize="18"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal">
+                        
+                        <TextBlock Text="Эквивалентное&#x0a;уравнение:"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   FontSize="18"
+                                   Margin="0,0,15,0"
+                                   Foreground="White"/>
+
+                        <controls:FormulaControl Formula="x=\frac{log_{2}(5x-2)}{2}"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="18"/>
+                        
+                    </StackPanel>
+                    
+                </Grid>
 
                 <oxy:PlotView Grid.Column="1"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               Background="#FF3F3F3F"
                               Model="{Binding PlotModel}"/>
-
-                <StackPanel Grid.Column="0">
-                    <Grid Height="80">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Найти:"
-                                   FontSize="18"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   Foreground="White"/>
-
-                        <controls:FormulaControl Grid.Column="1"
-                                                 Margin="5"
-                                                 Formula="f(x)=4^{x}-5x-2=0"
-                                                 Foreground="White"
-                                                 VerticalAlignment="Center"
-                                                 FontSize="18"/>
-                    </Grid>
-
-                    <Grid Height="80">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="85"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="На графике:"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontSize="18"
-                                   Foreground="White"/>
-
-                        <controls:FormulaControl Grid.Column="1"
-                                                 Formula="F_{1}=4^{x}"
-                                                 VerticalAlignment="Center"
-                                                 Foreground="White"
-                                                 Margin="5"
-                                                 FontSize="18"/>
-
-                        <controls:FormulaControl Grid.Column="2"
-                                                 Formula="F_{2}=5x+2"
-                                                 VerticalAlignment="Center"
-                                                 Foreground="White"
-                                                 Margin="5"
-                                                 FontSize="18"/>
-                    </Grid>
-
-                    <Grid Height="80">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Эквивалентноое&#x0a;уравнение:"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontSize="18"
-                                   Foreground="White"/>
-
-                        <controls:FormulaControl Grid.Column="2"
-                                                 Formula="x=\frac{log_{2}(5x-2)}{2}"
-                                                 Foreground="White"
-                                                 VerticalAlignment="Center"
-                                                 Margin="5"
-                                                 FontSize="18"/>
-                    </Grid>
-                </StackPanel>
+                
             </Grid>
 
-            <Border Height="160"
-                    Margin="10"
-                    Background="#FF1A1A2B"
-                    CornerRadius="15">
-                <StackPanel Margin="15">
-                    <TextBlock Text="Решение:"
-                               Foreground="White"
-                               FontSize="20"/>
+            <TextBlock Grid.Row="2"
+                       Margin="10"
+                       Foreground="ForestGreen"
+                       FontSize="22"
+                       Text="{Binding Result}"/>
 
-                    <TextBlock Text="{Binding Result}"
-                               Foreground="Green"
-                               Margin="30"
-                               FontSize="20"/>
-                </StackPanel>
-            </Border>
-            
-        </StackPanel>
+        </Grid>
     </Border>
 </UserControl>

@@ -3,11 +3,11 @@
 namespace Lab_2.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MultyGaussianView.xaml
+    /// Interaction logic for SingleGaussianView.xaml
     /// </summary>
-    public partial class MultyGaussianView : UserControl
+    public partial class SingleNewtonView : UserControl
     {
-        public MultyGaussianView ()
+        public SingleNewtonView ()
         {
             InitializeComponent();
         }

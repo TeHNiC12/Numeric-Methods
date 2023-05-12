@@ -13,20 +13,21 @@
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxWatermark1.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxWatermark2.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxWatermark3.xaml"/>
                 <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:SingleIterativeViewModel}">
                 <view:SingleIterativeView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:SingleGaussianViewModel}">
-                <view:SingleGaussianView/>
+            <DataTemplate DataType="{x:Type viewModel:SingleNewtonViewModel}">
+                <view:SingleNewtonView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:MultyIteratveViewModel}">
                 <view:MultyIterativeView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:MultyGaussianViewModel}">
-                <view:MultyGaussianView/>
+            <DataTemplate DataType="{x:Type viewModel:MultyNewtonViewModel}">
+                <view:MultyNewtonView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

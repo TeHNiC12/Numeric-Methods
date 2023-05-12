@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Lab_2.MVVM.View.MultyIterativeView"
+﻿<UserControl x:Class="Lab_2.MVVM.View.MultyNewtonView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,10 +9,10 @@
              xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="850">
-
     <UserControl.DataContext>
-        <viewModel:MultyIteratveViewModel/>
+        <viewModel:MultyNewtonViewModel/>
     </UserControl.DataContext>
+
     <Border Background="#FF15151D"
             CornerRadius="15">
 
@@ -63,9 +63,8 @@
 
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" 
@@ -81,7 +80,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition/>                         
                             </Grid.RowDefinitions>
 
                             <controls:FormulaControl Grid.Row="0"
@@ -95,10 +94,10 @@
                                                          Foreground="White"
                                                          VerticalAlignment="Center"
                                                          FontSize="18"/>
-
+                            
                         </Grid>
 
-
+                        
 
                     </StackPanel>
 
@@ -130,37 +129,6 @@
                                                          VerticalAlignment="Center"
                                                          FontSize="20"/>
 
-                        </Grid>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="2"
-                                Orientation="Horizontal">
-
-                        <TextBlock Text="Эквивалентные&#x0a;уравнения:"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontSize="18"
-                                   Margin="0,0,15,0"
-                                   Foreground="White"/>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <controls:FormulaControl Grid.Row="0"
-                                                     Formula="x_{1}=\frac{cos(x_{2})}{3}"
-                                                     Foreground="White"
-                                                     VerticalAlignment="Center"
-                                                     FontSize="18"/>
-
-                            <controls:FormulaControl Grid.Row="1"
-                                                     Formula="x_{2}=\frac{e^{x_{1}}}{3}"
-                                                     Foreground="White"
-                                                     VerticalAlignment="Center"
-                                                     FontSize="18"/>
                         </Grid>
 
                     </StackPanel>

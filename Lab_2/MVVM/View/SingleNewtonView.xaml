@@ -1,18 +1,17 @@
-﻿<UserControl x:Class="Lab_2.MVVM.View.MultyIterativeView"
+﻿<UserControl x:Class="Lab_2.MVVM.View.SingleNewtonView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Lab_2.MVVM.View"
-             xmlns:oxy="http://oxyplot.org/wpf" 
              xmlns:viewModel="clr-namespace:Lab_2.MVVM.ViewModel"
+             xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="850">
-
     <UserControl.DataContext>
-        <viewModel:MultyIteratveViewModel/>
+        <viewModel:SingleNewtonViewModel/>
     </UserControl.DataContext>
+
     <Border Background="#FF15151D"
             CornerRadius="15">
 
@@ -35,14 +34,14 @@
                          Style="{StaticResource TextBoxWatermark1}"
                          Text="{Binding StAccuracy, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Width="285"
+                <TextBox Width="245"
                          Height="30"
                          Margin="15,0,15,0"
                          HorizontalContentAlignment="Center"
                          VerticalContentAlignment="Center"
                          Foreground="White"
-                         Style="{StaticResource TextBoxWatermark3}"
-                         Text="{Binding StBounds, UpdateSourceTrigger=PropertyChanged}"/>
+                         Style="{StaticResource TextBoxWatermark2}"
+                         Text="{Binding StAB, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Решить уравнение"
                         Width="130"
@@ -66,39 +65,23 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" 
                                 Orientation="Horizontal">
 
-                        <TextBlock Text="Решить систему:"
+                        <TextBlock Text="Найти:"
                                    FontSize="18"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
                                    Foreground="White"
                                    Margin="0,0,15,0"/>
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <controls:FormulaControl Grid.Row="0"
-                                                         Formula="3x_{1}-cos(x_{2})=0"
-                                                         Foreground="White"
-                                                         VerticalAlignment="Center"
-                                                         FontSize="18"/>
-
-                            <controls:FormulaControl Grid.Row="1"
-                                                         Formula="3x_{2}-e^{x_{1}}=0"
-                                                         Foreground="White"
-                                                         VerticalAlignment="Center"
-                                                         FontSize="18"/>
-
-                        </Grid>
-
-
+                        <controls:FormulaControl Formula="f(x)=4^{x}-5x-2=0"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="18"/>
 
                     </StackPanel>
 
@@ -112,56 +95,50 @@
                                    Foreground="White"
                                    Margin="0,0,15,0"/>
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                        <controls:FormulaControl Formula="F_{1}=4^{x}"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="White"
+                                                 Margin="0,0,15,0"
+                                                 FontSize="18"/>
 
-                            <controls:FormulaControl Grid.Row="0"
-                                                         Formula="f_{1}(x_{1},x_{2})=3x_{1}-cos(x_{2})"
-                                                         Foreground="White"
-                                                         VerticalAlignment="Center"
-                                                         FontSize="20"/>
-
-                            <controls:FormulaControl Grid.Row="1"
-                                                         Formula="f_{2}(x_{1},x_{2})=3x_{2}-e^{x_{1}}"
-                                                         Foreground="White"
-                                                         VerticalAlignment="Center"
-                                                         FontSize="20"/>
-
-                        </Grid>
+                        <controls:FormulaControl Formula="F_{2}=5x+2"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="White"
+                                                 FontSize="18"/>
 
                     </StackPanel>
 
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal">
 
-                        <TextBlock Text="Эквивалентные&#x0a;уравнения:"
+                        <TextBlock Text="Первая&#x0a;производная:"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
                                    FontSize="18"
                                    Margin="0,0,15,0"
                                    Foreground="White"/>
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                        <controls:FormulaControl Formula="f'(x)=\ln\left(4\right){\cdot}4^x-5"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="18"/>
 
-                            <controls:FormulaControl Grid.Row="0"
-                                                     Formula="x_{1}=\frac{cos(x_{2})}{3}"
-                                                     Foreground="White"
-                                                     VerticalAlignment="Center"
-                                                     FontSize="18"/>
+                    </StackPanel>
 
-                            <controls:FormulaControl Grid.Row="1"
-                                                     Formula="x_{2}=\frac{e^{x_{1}}}{3}"
-                                                     Foreground="White"
-                                                     VerticalAlignment="Center"
-                                                     FontSize="18"/>
-                        </Grid>
+                    <StackPanel Grid.Row="3"
+                                Orientation="Horizontal">
+
+                        <TextBlock Text="Вторая&#x0a;производная:"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   FontSize="18"
+                                   Margin="0,0,15,0"
+                                   Foreground="White"/>
+
+                        <controls:FormulaControl Formula="f''(x)=\ln^2\left(4\right){\cdot}4^x"
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 FontSize="18"/>
 
                     </StackPanel>
 
@@ -183,4 +160,5 @@
 
         </Grid>
     </Border>
+
 </UserControl>
