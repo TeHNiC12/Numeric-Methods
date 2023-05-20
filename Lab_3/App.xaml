@@ -1,0 +1,27 @@
+﻿<Application x:Class="Lab_3.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Lab_3"
+             xmlns:view="clr-namespace:Lab_3.MVVM.View"
+             xmlns:viewModel="clr-namespace:Lab_3.MVVM.ViewModel"
+             StartupUri="MVVM/View/MainView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxWatermark1.xaml"/>
+                <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                <view:MainView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SubTask1LagrangeViewModel}">
+                <view:SubTask1LagrangeView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

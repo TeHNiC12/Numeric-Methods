@@ -11,42 +11,57 @@
             Matrix.Print(input.B);
             Console.WriteLine("A inverted:");
             Matrix.Print(Matrix.Invert(input.A));
-            Console.WriteLine($"Determinant A = {Matrix.Determinant(input.A)}\n");
-            Console.WriteLine("LU decomposition:");
-            LUDecompose(input);
-            Console.WriteLine("Matrix L:");
-            Matrix.Print(GetL(input.A));
-            Console.WriteLine("Matrix U:");
-            Matrix.Print(GetU(input.A));
-            Console.WriteLine("Result:");
-            float[] result = LUSolve(input);
-            for (int i = 0; i < result.Length; i++)
+            float detA = Matrix.Determinant(input.A);
+            if (detA == 0)
             {
-                Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                throw new Exception("Determinant = 0, impossible to solve");
+            }
+            else
+            {
+                Console.WriteLine($"Determinant A = {detA}\n");
+                Console.WriteLine("LU decomposition:");
+                MatExt LUB = LUDecompose(input);
+                Console.WriteLine("Matrix L:");
+                Matrix.Print(GetL(LUB.A));
+                Console.WriteLine("Matrix U:");
+                Matrix.Print(GetU(LUB.A));
+                Console.WriteLine("Result:");
+                float[] result = LUSolve(LUB);
+                for (int i = 0; i < result.Length; i++)
+                {
+                    Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                }
             }
         }
-        private void LUDecompose (MatExt input)
+
+        private MatExt LUDecompose (MatExt input)
         {
             int size = input.A.GetLength(0);
-            int columns_A = input.A.GetLength(1);
-            for (int i = 0; i < size - 1; i++)
+            float[,] L = Matrix.CreateIdentity(size);
+
+            for (int k = 0; k < size - 1; k++)
             {
-                int exchRow = i + 1;
-                while (input.A[i, i] == 0)
+                float[,] M = Matrix.CreateIdentity(size);
+                float[,] invM = Matrix.CreateIdentity(size);
+                for (int i = k + 1; i < size; i++)
                 {
-                    Matrix.SwichString(input, i, exchRow);
-                    exchRow++;
+                    float mu = input.A[i, k] / input.A[k, k];
+                    M[i, k] = -mu;
+                    invM[i, k] = mu;
                 }
-                for (int j = i + 1; j < size; j++)
+                input.A = Matrix.Multiply(M, input.A);
+                L = Matrix.Multiply(L, invM);
+            }
+
+            for (int i = 1; i < size; i++)
+            {
+                for (int j = 0; j < i; j++)
                 {
-                    float k = -input.A[j, i] / input.A[i, i];
-                    input.A[j, i] = -k;
-                    for (int z = i + 1; z < columns_A; z++)
-                    {
-                        input.A[j, z] = input.A[j, z] + k * input.A[i, z];
-                    }
+                    input.A[i, j] = L[i, j];
                 }
             }
+
+            return input;
         }
         private float[] LUSolve (MatExt input)
         {
@@ -74,6 +89,7 @@
             }
             return X;
         }
+
         private float[,] GetL (float[,] LU)
         {
             int size = LU.GetLength(0);

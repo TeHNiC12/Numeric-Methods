@@ -9,17 +9,25 @@
             Matrix.Print(input.A);
             Console.WriteLine("Matrix B:");
             Matrix.Print(input.B);
-            Console.WriteLine("Gaussian transformation:");
-            GaussianTransform(input);
-            Console.WriteLine("Matrix A:");
-            Matrix.Print(input.A);
-            Console.WriteLine("Matrix B:");
-            Matrix.Print(input.B);
-            Console.WriteLine("Result:");
-            float[] result = GaussianSolve(input);
-            for (int i = 0; i < result.Length; i++)
+            float detA = Matrix.Determinant(input.A);
+            if (detA == 0)
             {
-                Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                throw new Exception("Determinant = 0, impossible to solve");
+            }
+            else
+            {
+                Console.WriteLine("Gaussian transformation:");
+                GaussianTransform(input);
+                Console.WriteLine("Matrix A:");
+                Matrix.Print(input.A);
+                Console.WriteLine("Matrix B:");
+                Matrix.Print(input.B);
+                Console.WriteLine("Result:");
+                float[] result = GaussianSolve(input);
+                for (int i = 0; i < result.Length; i++)
+                {
+                    Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                }
             }
         }
         private void GaussianTransform (MatExt input)
