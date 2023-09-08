@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab_2.MVVM.Model
 {
@@ -45,7 +47,12 @@ namespace Lab_2.MVVM.Model
         }
         private void CalculateQ ()
         {
-            double q = Math.Round(Math.Max(Math.Abs(DerivativePhi(A)), Math.Abs(DerivativePhi(B))), 2, MidpointRounding.AwayFromZero);
+            List<double> phiRange = new();
+            for (double i = A; i < B; i += 0.01f)
+            {
+                phiRange.Add(Math.Abs(DerivativePhi(i)));
+            }
+            double q = Math.Round(phiRange.Max(), 2, MidpointRounding.AwayFromZero);
             if (q > 0 & q < 1)
             {
                 Q = q;
