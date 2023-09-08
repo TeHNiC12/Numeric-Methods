@@ -27,6 +27,7 @@ namespace Lab_2.MVVM.ViewModel
         private double A;
         private double B;
         public PlotModel? PlotModel { get; private set; }
+
         private string _stAB;
         public string StAB
         {

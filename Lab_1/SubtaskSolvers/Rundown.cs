@@ -9,17 +9,20 @@
             Matrix.Print(input.A);
             Console.WriteLine("Matrix D:");
             Matrix.Print(input.B);
-            Console.WriteLine("Rundown coefficients:");
-            MatExt PQ = FindPQ(input);
-            Console.WriteLine("Matrix P:");
-            Matrix.Print(PQ.A);
-            Console.WriteLine("Matrix Q:");
-            Matrix.Print(PQ.B);
-            Console.WriteLine("Result:");
-            float[] result = Solve(PQ);
-            for (int i = 0; i < result.Length; i++)
+            if (Check(input.A))
             {
-                Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                Console.WriteLine("Rundown coefficients:");
+                MatExt PQ = FindPQ(input);
+                Console.WriteLine("Matrix P:");
+                Matrix.Print(PQ.A);
+                Console.WriteLine("Matrix Q:");
+                Matrix.Print(PQ.B);
+                Console.WriteLine("Result:");
+                float[] result = Solve(PQ);
+                for (int i = 0; i < result.Length; i++)
+                {
+                    Console.WriteLine($"X{i + 1} = {result[i]:f}");
+                }
             }
         }
         private MatExt FindPQ (MatExt input)
@@ -61,6 +64,46 @@
                 }
             }
             return X;
+        }
+        private bool Check (float[,] input)
+        {
+            int strict = 0;
+
+            for (int i = 1; i < input.GetLength(0) - 2; i++)
+            {
+                if (input[i, 0] == 0)
+                {
+                    Console.WriteLine($"Coefficient a{i + 1} = 0, solution won't be accurate");
+                    return false;
+                }
+                if (input[i, 0] == 0)
+                {
+                    Console.WriteLine($"Coefficient c{i + 1} = 0, solution won't be accurate");
+                    return false;
+                }
+            }
+            for (int i = 0; i < input.GetLength(1) - 1; i++)
+            {
+                float ac = Math.Abs(input[i, 0]) + Math.Abs(input[i, 2]);
+                if (Math.Abs(input[i, 1]) > ac)
+                {
+                    strict++;
+                }
+                if (Math.Abs(input[i, 1]) < ac)
+                {
+                    Console.WriteLine($"|b{i + 1}| < |a{i + 1}| + |c{i + 1}|, solution won't be accurate");
+                    return false;
+                }
+            }
+            if (strict == 0)
+            {
+                Console.WriteLine("Inequasion |bi| < |ai| + |ci| isn't satisfied at least once, solution won't be accurate");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
