@@ -9,16 +9,29 @@ namespace Lab_2.MVVM.Model
 
         public (double X, int step) Solve (double Accuracy)
         {
-            double xCur = (A + B) / 2;
-            double xPrev;
-            int step;
-            if (CheckIntervalCorrectness(xCur))
+            if (CheckIntervalCorrectness())
             {
+                double xCur;
+                if (Func(A) * Derivative2(A) > 0)
+                {
+                    xCur = A;
+                }
+                else if (Func(B) * Derivative2(B) > 0)
+                {
+                    xCur = B;
+                }
+                else
+                {
+                    throw new Exception("Impossible to select X0");
+                }
+                double xPrev;
+                int step;
+
                 for (step = 1; step > 0; step++)
                 {
                     xPrev = xCur;
                     xCur = xPrev - Func(xPrev) / Derivative1(xPrev);
-                    if (Math.Abs(xCur - xPrev) < Accuracy)
+                    if (Math.Abs(xCur - xPrev) <= Accuracy)
                     {
                         break;
                     }
@@ -27,17 +40,29 @@ namespace Lab_2.MVVM.Model
             }
             else
             {
-                throw new Exception("Interval not correct");
+                throw new Exception("Интервал не верен, метод не сходится");
             }
         }
 
-        private bool CheckIntervalCorrectness (double X0)
+        private bool CheckIntervalCorrectness ()
         {
-            bool sign1 = Math.Sign(Derivative1(A)) == Math.Sign(Derivative1(B));
-            bool sign2 = Math.Sign(Derivative2(A)) == Math.Sign(Derivative2(B));
-            bool check1 = Math.Sign(Func(A) * Func(B)) == -1;
-            bool check2 = Math.Sign(Func(X0) * Derivative2(X0)) == 1;
-            return sign1 & sign2 & check1 & check2;
+            bool correctness = true;
+            correctness = correctness && Func(A) * Func(B) < 0;
+
+            int sign1 = Math.Sign(Derivative1(A));
+            int sign2 = Math.Sign(Derivative2(A));
+            for (double x = A; x <= B; x += 0.01f)
+            {
+                double derVal = Derivative1(x);
+                int nsign1 = Math.Sign(derVal);
+                int nsign2 = Math.Sign(Derivative2(x));
+                correctness = correctness && derVal != 0;
+                correctness = correctness && sign1 == nsign1;
+                correctness = correctness && sign2 == nsign2;
+                sign1 = nsign1;
+                sign2 = nsign2;
+            }
+            return correctness;
         }
 
         private Func<double, double> Func = x => Math.Pow(4, x) - 5 * x - 2;

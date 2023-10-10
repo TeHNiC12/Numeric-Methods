@@ -1,6 +1,8 @@
 ﻿using Lab_2.Core;
 using Lab_2.MVVM.Model;
 using OxyPlot;
+using OxyPlot.Annotations;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
 using System.Windows;
@@ -91,16 +93,41 @@ namespace Lab_2.MVVM.ViewModel
         }
         private void InitializePlotModel ()
         {
-            PlotModel PM = new();
-            /*ScatterSeries series1 = GetPoints(_multyNewtonM.f1X1X2, -0.4, 0.4, -2, 2, 0.001);
-            PM.Series.Add(series1);
-            ScatterSeries series2 = GetPoints(_multyNewtonM.f2X1X2, -2, 2, -2, 2, 0.001);
-            PM.Series.Add(series2);*/
-            PM.Axes.Add(new OxyPlot.Axes.LinearAxis { Position = OxyPlot.Axes.AxisPosition.Bottom, ExtraGridlines = new double[] { 0 }, ExtraGridlineThickness = 1, ExtraGridlineColor = OxyColors.Black, });
-            PM.Axes.Add(new OxyPlot.Axes.LinearAxis { Position = OxyPlot.Axes.AxisPosition.Left, ExtraGridlines = new double[] { 0 }, ExtraGridlineThickness = 1, ExtraGridlineColor = OxyColors.Black, });
-            PM.Series.Add(new FunctionSeries(_multyIterativeM.Func1, -0.4, 0.4, 0.001, "f1(x1, x2)"));
-            PM.Series.Add(new FunctionSeries(_multyIterativeM.Func2, -1, 1, 0.001, "f2(x1, x2)"));
-            PlotModel = PM;
+            PlotModel = new();
+            var zeroLineY = new LineAnnotation
+            {
+                Type = LineAnnotationType.Horizontal,
+                Y = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var zeroLineX = new LineAnnotation
+            {
+                Type = LineAnnotationType.Vertical,
+                X = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var xAxis = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                TitleFontSize = 16,
+                Title = "X1"
+            };
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                TitleFontSize = 16,
+                Title = "X2"
+            };
+            PlotModel.Annotations.Add(zeroLineX);
+            PlotModel.Annotations.Add(zeroLineY);
+            PlotModel.Axes.Add(xAxis);
+            PlotModel.Axes.Add(yAxis);
+            PlotModel.Series.Add(new FunctionSeries(_multyIterativeM.Func1, -0.4, 0.4, 0.001, "f1(x1, x2)"));
+            PlotModel.Series.Add(new FunctionSeries(_multyIterativeM.Func2, -1, 1, 0.001, "f2(x1, x2)"));
         }
         public bool CollectData ()
         {

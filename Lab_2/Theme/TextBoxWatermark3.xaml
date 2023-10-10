@@ -17,7 +17,7 @@
                             
                             <TextBlock x:Name="TextB"
                                        IsHitTestVisible="False"
-                                       Text="Укажите начальное приближение [x1;x1;x2;x2]"
+                                       Text="Укажите начальное приближение [x1_L;x1_R;x2_L;x2_R]"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        FontSize="13"

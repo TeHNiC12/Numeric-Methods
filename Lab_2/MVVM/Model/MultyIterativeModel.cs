@@ -15,7 +15,7 @@ namespace Lab_2.MVVM.Model
             double[] xCur = new double[2];
             xCur[0] = (X1L + X1R) / 2;
             xCur[1] = (X2L + X2R) / 2;
-            double q = CalculateQ(xCur);
+            double q = CalculateQ();
             int step;
             for (step = 1; step > 0; step++)
             {
@@ -32,21 +32,30 @@ namespace Lab_2.MVVM.Model
             return (xCur[0], xCur[1], step);
         }
 
-        private double CalculateQ (double[] X)
+        private double CalculateQ ()
         {
-            double q = Math.Round(
-                Math.Max
-                (
-                    Math.Abs(DPhi1X1(X[0], X[1])) + Math.Abs(DPhi1X2(X[0], X[1])),
-                    Math.Abs(DPhi2X1(X[0], X[1])) + Math.Abs(DPhi2X2(X[0], X[1]))
-                    ), 2, MidpointRounding.AwayFromZero);
-            if (q > 0 & q < 1)
+            double Q = -1f;
+            for (double x1 = X1L; x1 <= X1R; x1 += 0.01f)
             {
-                return q;
+                for (double x2 = X2L; x2 <= X2R; x2 += 0.01f)
+                {
+                    double q = Math.Round(
+                        Math.Max
+                            (
+                                Math.Abs(DPhi1X1(x1, x2)) + Math.Abs(DPhi1X2(x1, x2)),
+                                Math.Abs(DPhi2X1(x1, x2)) + Math.Abs(DPhi2X2(x1, x2))
+                            ), 2, MidpointRounding.AwayFromZero);
+                    Q = Math.Max(Q, q);
+                }
+            }
+
+            if (Q > 0 & Q < 1)
+            {
+                return Q;
             }
             else
             {
-                throw new Exception("q не удоветворяет требованиям: 0 < q < 1");
+                throw new Exception("q не удоветворяет требованиям: 0 < q < 1 метод не сходится");
             }
         }
 

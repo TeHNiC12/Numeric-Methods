@@ -34,15 +34,42 @@ namespace Lab_2.MVVM.Model
                 throw new Exception("Interval not correct");
             }
         }
+
+        private bool ContainsX ()
+        {
+            bool contains = true;
+            contains = contains && F(A) * F(B) < 0;
+
+            int sign1 = Math.Sign(FirstDerivativeF(A));
+            int sign2 = Math.Sign(SecondDerivativeF(A));
+            for (double x = A + 0.01f; x <= B; x += 0.01f)
+            {
+                int nsign1 = Math.Sign(FirstDerivativeF(x));
+                int nsign2 = Math.Sign(SecondDerivativeF(x));
+                contains = contains && sign1 == nsign1;
+                contains = contains && sign2 == nsign2;
+                sign1 = nsign1;
+                sign2 = nsign2;
+            }
+            return contains;
+        }
+
         private bool CheckIntervalCorrectness ()
         {
-            if (Cond(A) > 0)
+            if (ContainsX())
             {
-                return true;
+                if (Cond(A) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                return false;
+                throw new Exception("Интервал не содержит корня");
             }
         }
         private void CalculateQ ()
@@ -59,7 +86,7 @@ namespace Lab_2.MVVM.Model
             }
             else
             {
-                throw new Exception("q не удоветворяет требованиям: 0 < q < 1");
+                throw new Exception("q не удоветворяет требованиям: 0 < q < 1 => метод не сходится");
             }
         }
 
@@ -75,5 +102,10 @@ namespace Lab_2.MVVM.Model
         private Func<double, double> Cond = x => 5 * x + 2;
         private Func<double, double> Phi = x => Math.Log2(5 * x + 2) / 2;
         private Func<double, double> DerivativePhi = x => 5 / (2 * Math.Log(2) * (5 * x + 2));
+
+        private Func<double, double> F = x => Math.Pow(4, x) - 5 * x - 2;
+        private Func<double, double> FirstDerivativeF = x => Math.Pow(4, x) * Math.Log(4) - 5;
+        private Func<double, double> SecondDerivativeF = x => Math.Pow(4, x) * Math.Pow(Math.Log(4), 2);
+
     }
 }

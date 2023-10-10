@@ -1,6 +1,8 @@
 ﻿using Lab_2.Core;
 using Lab_2.MVVM.Model;
 using OxyPlot;
+using OxyPlot.Annotations;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
 using System.Windows;
@@ -78,6 +80,38 @@ namespace Lab_2.MVVM.ViewModel
         private void InitializePlotModel ()
         {
             PlotModel = new();
+            var zeroLineY = new LineAnnotation
+            {
+                Type = LineAnnotationType.Horizontal,
+                Y = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var zeroLineX = new LineAnnotation
+            {
+                Type = LineAnnotationType.Vertical,
+                X = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var xAxis = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                TitleFontSize = 18,
+                Title = "x"
+            };
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                TitleFontSize = 18,
+                Title = "f(x)"
+            };
+            PlotModel.Annotations.Add(zeroLineX);
+            PlotModel.Annotations.Add(zeroLineY);
+            PlotModel.Axes.Add(xAxis);
+            PlotModel.Axes.Add(yAxis);
             PlotModel.Series.Add(new FunctionSeries(_singleIterativeM.Func1, -1, 2, 0.001, "F1"));
             PlotModel.Series.Add(new FunctionSeries(_singleIterativeM.Func2, -1, 2, 0.001, "F2"));
         }

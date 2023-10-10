@@ -1,6 +1,8 @@
 ﻿using Lab_2.Core;
 using Lab_2.MVVM.Model;
 using OxyPlot;
+using OxyPlot.Annotations;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
 using System.Windows;
@@ -9,7 +11,7 @@ namespace Lab_2.MVVM.ViewModel
 {
     public class SingleNewtonViewModel : ObservableObject
     {
-        private SingleNewtonModel _singleGaussianM;
+        private SingleNewtonModel _singleNewtonM;
         public RelayCommand CollectDataCommand { get; set; }
 
         private string _result;
@@ -45,7 +47,7 @@ namespace Lab_2.MVVM.ViewModel
         {
             StAB = string.Empty;
             StAccuracy = string.Empty;
-            _singleGaussianM = new();
+            _singleNewtonM = new();
             InitializePlotModel();
             CollectDataCommand = new RelayCommand(o =>
             {
@@ -60,9 +62,9 @@ namespace Lab_2.MVVM.ViewModel
         {
             try
             {
-                _singleGaussianM.A = A;
-                _singleGaussianM.B = B;
-                (double X, int step) res = _singleGaussianM.Solve(Accuracy);
+                _singleNewtonM.A = A;
+                _singleNewtonM.B = B;
+                (double X, int step) res = _singleNewtonM.Solve(Accuracy);
                 SetResult(res.X, res.step);
             }
             catch (Exception ex)
@@ -77,8 +79,40 @@ namespace Lab_2.MVVM.ViewModel
         private void InitializePlotModel ()
         {
             PlotModel = new();
-            PlotModel.Series.Add(new FunctionSeries(_singleGaussianM.Func1, -1, 2, 0.001, "F1"));
-            PlotModel.Series.Add(new FunctionSeries(_singleGaussianM.Func2, -1, 2, 0.001, "F2"));
+            var zeroLineY = new LineAnnotation
+            {
+                Type = LineAnnotationType.Horizontal,
+                Y = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var zeroLineX = new LineAnnotation
+            {
+                Type = LineAnnotationType.Vertical,
+                X = 0,
+                Color = OxyColors.Black,
+                LineStyle = LineStyle.Solid,
+                StrokeThickness = 1
+            };
+            var xAxis = new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                TitleFontSize = 18,
+                Title = "x"
+            };
+            var yAxis = new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                TitleFontSize = 18,
+                Title = "f(x)"
+            };
+            PlotModel.Annotations.Add(zeroLineX);
+            PlotModel.Annotations.Add(zeroLineY);
+            PlotModel.Axes.Add(xAxis);
+            PlotModel.Axes.Add(yAxis);
+            PlotModel.Series.Add(new FunctionSeries(_singleNewtonM.Func1, -1, 2, 0.001, "F1"));
+            PlotModel.Series.Add(new FunctionSeries(_singleNewtonM.Func2, -1, 2, 0.001, "F2"));
         }
         public bool CollectData ()
         {

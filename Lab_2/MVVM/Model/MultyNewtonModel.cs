@@ -27,7 +27,7 @@ namespace Lab_2.MVVM.Model
                     double[] delta = FindDelta(xPrev);
                     xCur[0] = xPrev[0] + delta[0];
                     xCur[1] = xPrev[1] + delta[1];
-                    double error = Math.Abs(xCur[0] - xPrev[0]) + Math.Abs(xCur[1] - xPrev[1]);
+                    double error = Math.Max(Math.Abs(xCur[0] - xPrev[0]), Math.Abs(xCur[1] - xPrev[1]));
                     if (error <= Accuracy)
                     {
                         break;
@@ -35,7 +35,7 @@ namespace Lab_2.MVVM.Model
                 }
                 else
                 {
-                    throw new Exception("Det(Jacobian) = 0");
+                    throw new Exception($"Jacobian = 0 on step {step} method is unaplicable");
                 }
             }
             return (xCur[0], xCur[1], step);

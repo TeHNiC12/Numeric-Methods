@@ -147,7 +147,7 @@
                 <oxy:PlotView Grid.Column="1"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              Background="#FF3F3F3F"
+                              Background="#FFFFFF"
                               Model="{Binding PlotModel}"/>
 
             </Grid>
