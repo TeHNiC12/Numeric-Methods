@@ -12,13 +12,15 @@
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxWatermark1.xaml"/>
                 <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ToggleButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/RadioButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
                 <view:MainView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:SubTask1LagrangeViewModel}">
+            <DataTemplate DataType="{x:Type viewModel:SubTask1ViewModel}">
                 <view:SubTask1LagrangeView/>
             </DataTemplate>
 

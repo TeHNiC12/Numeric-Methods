@@ -6,7 +6,7 @@ namespace Lab_3.MVVM.ViewModel
     {
         public RelayCommand SubTask1LagrangeCommand { get; set; }
 
-        public SubTask1LagrangeViewModel SubTask1LagrangeVM { get; set; }
+        public SubTask1ViewModel SubTask1LagrangeVM { get; set; }
 
         private object _currentView;
         public object CurrentView
