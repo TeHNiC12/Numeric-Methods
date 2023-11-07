@@ -12,7 +12,7 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Border Background="#FF2B2B2B">
+    <Border Background="#FF1F1F1F">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
@@ -42,14 +42,15 @@
                                  FontSize="20"
                                  IsChecked="True"
                                  Style="{StaticResource MenuButtonTheme}"
-                                 Command="{Binding SubTask1LagrangeCommand}"/>
+                                 Command="{Binding SubTask1Command}"/>
 
                     <RadioButton Height="70"
                                  Margin="5"
                                  Content="Lab_3.2"
                                  Foreground="White"
                                  FontSize="20"
-                                 Style="{StaticResource MenuButtonTheme}"/>
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding SubTask2Command}"/>
 
                     <RadioButton Height="70"
                                  Margin="5"

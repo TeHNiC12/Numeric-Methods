@@ -3,11 +3,11 @@
 namespace Lab_3.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for SubTask1View.xaml
+    /// Interaction logic for SubTask2View.xaml
     /// </summary>
-    public partial class SubTask1View : UserControl
+    public partial class SubTask2View : UserControl
     {
-        public SubTask1View ()
+        public SubTask2View ()
         {
             InitializeComponent();
         }

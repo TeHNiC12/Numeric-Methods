@@ -142,7 +142,7 @@ namespace Lab_3.MVVM.ViewModel
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 6,
                 MarkerStroke = OxyColors.Blue,
-                Title = "Original points"
+                Title = "Interpolation points"
             };
             double[] Y = _subtask1M.CalculateY(SubTask1Values.Func, PointSet);
             for (int i = 0; i < PointSet.Count(); i++)

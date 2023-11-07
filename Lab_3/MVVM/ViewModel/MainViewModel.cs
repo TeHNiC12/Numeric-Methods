@@ -4,9 +4,11 @@ namespace Lab_3.MVVM.ViewModel
 {
     public class MainViewModel : ObservableObject
     {
-        public RelayCommand SubTask1LagrangeCommand { get; set; }
+        public RelayCommand SubTask1Command { get; set; }
+        public RelayCommand SubTask2Command { get; set; }
 
-        public SubTask1ViewModel SubTask1LagrangeVM { get; set; }
+        public SubTask1ViewModel SubTask1VM { get; set; }
+        public SubTask2ViewModel SubTask2VM { get; set; }
 
         private object _currentView;
         public object CurrentView
@@ -21,13 +23,18 @@ namespace Lab_3.MVVM.ViewModel
 
         public MainViewModel ()
         {
-            SubTask1LagrangeVM = new();
+            SubTask1VM = new();
+            SubTask2VM = new();
 
-            CurrentView = SubTask1LagrangeVM;
+            CurrentView = SubTask1VM;
 
-            SubTask1LagrangeCommand = new RelayCommand(o =>
+            SubTask1Command = new RelayCommand(o =>
             {
-                CurrentView = SubTask1LagrangeVM;
+                CurrentView = SubTask1VM;
+            });
+            SubTask2Command = new RelayCommand(o =>
+            {
+                CurrentView = SubTask2VM;
             });
         }
     }

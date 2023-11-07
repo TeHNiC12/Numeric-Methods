@@ -21,7 +21,11 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:SubTask1ViewModel}">
-                <view:SubTask1LagrangeView/>
+                <view:SubTask1View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SubTask2ViewModel}">
+                <view:SubTask2View/>
             </DataTemplate>
 
         </ResourceDictionary>
