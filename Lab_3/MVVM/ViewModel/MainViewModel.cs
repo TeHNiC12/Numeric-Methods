@@ -7,10 +7,12 @@ namespace Lab_3.MVVM.ViewModel
         public RelayCommand SubTask1Command { get; set; }
         public RelayCommand SubTask2Command { get; set; }
         public RelayCommand SubTask3Command { get; set; }
+        public RelayCommand SubTask4Command { get; set; }
 
         public SubTask1ViewModel SubTask1VM { get; set; }
         public SubTask2ViewModel SubTask2VM { get; set; }
         public SubTask3ViewModel SubTask3VM { get; set; }
+        public SubTask4ViewModel SubTask4VM { get; set; }
 
         private object _currentView;
         public object CurrentView
@@ -28,6 +30,7 @@ namespace Lab_3.MVVM.ViewModel
             SubTask1VM = new();
             SubTask2VM = new();
             SubTask3VM = new();
+            SubTask4VM = new();
 
             CurrentView = SubTask1VM;
 
@@ -42,6 +45,10 @@ namespace Lab_3.MVVM.ViewModel
             SubTask3Command = new RelayCommand(o =>
             {
                 CurrentView = SubTask3VM;
+            });
+            SubTask4Command = new RelayCommand(o =>
+            {
+                CurrentView = SubTask4VM;
             });
         }
     }
