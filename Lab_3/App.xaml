@@ -28,6 +28,10 @@
                 <view:SubTask2View/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:SubTask3ViewModel}">
+                <view:SubTask3View/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

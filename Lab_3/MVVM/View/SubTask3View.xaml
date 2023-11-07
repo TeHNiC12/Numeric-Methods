@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Lab_3.MVVM.View.SubTask3View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lab_3.MVVM.View"
+             xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+             xmlns:oxy="http://oxyplot.org/wpf" 
+             xmlns:viewModel="clr-namespace:Lab_3.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:SubTask3ViewModel/>
+    </UserControl.DataContext>
+
+    <Border Background="#FF1F1F1F"
+        CornerRadius="15">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                    Margin="5,3,5,0"
+                    Background="#FF2B2B2B"
+                    CornerRadius="5">
+
+                    <Viewbox HorizontalAlignment="Left"
+                         Margin="5,0,5,0">
+
+                        <TextBlock Text="Метод наименьших квадратов"
+                               Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="1"
+                    Margin="5,3,5,0"
+                    Background="#FF2B2B2B"
+                    CornerRadius="5">
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Margin="5">
+
+                        <StackPanel Orientation="Vertical">
+
+                            <controls:FormulaControl Formula="x_i=[-1; 0; 1; 2; 3; 4]"
+                                                     Foreground="#fff"/>
+
+                            <controls:FormulaControl Formula="y_i=[-0.5; 0; 0.5; 0.86603; 1; 0.86603]"
+                                                     Foreground="#fff"/>
+                        </StackPanel>
+                    </Viewbox>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="1"
+                Margin="5,3,5,0"
+                Background="#FF2B2B2B"
+                CornerRadius="5">
+
+                <oxy:PlotView Grid.Column="1"
+                              Margin="5"
+                              Model="{Binding PlotModel}"/>
+            </Border>
+
+            <Border Grid.Row="2"
+                Margin="5,3,5,3"
+                Background="#FF2B2B2B"
+                CornerRadius="5">
+
+                <Viewbox HorizontalAlignment="Left"
+                     Margin="5,0,5,0">
+
+                    <StackPanel Orientation="Vertical">
+
+                        <TextBlock Text="{Binding Error1}"
+                                   Foreground="#fff"/>
+
+                        <TextBlock Text="{Binding Error2}"
+                                   Foreground="#fff"/>
+                    </StackPanel>
+                </Viewbox>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
