@@ -1,6 +1,6 @@
 ﻿namespace Lab_1.SubtaskSolvers
 {
-    internal class Zeidel : SubTask<MatExt>
+    public class Zeidel : SubTask<MatExt>
     {
         public override void Execute (MatExt input)
         {

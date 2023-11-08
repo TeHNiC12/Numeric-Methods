@@ -1,0 +1,72 @@
+﻿<Window x:Class="Lab_4.MVVM.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_4.MVVM.View"
+        xmlns:viewModel="clr-namespace:Lab_4.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="1080"
+        Width="1920">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#FF1F1F1F">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" 
+                    Margin="5"
+                    Background="#FF2B2B2B"
+                    CornerRadius="15">
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox Grid.Column="0"
+                             HorizontalAlignment="Left">
+
+                        <TextBlock Text="Лабораторная №4"
+                                   Foreground="#fff"
+                                   Margin="2"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Column="1"
+                             Margin="0,10,0,10">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <RadioButton Content="Lab_4.1"
+                                         Foreground="White"
+                                         FontSize="18"
+                                         Width="600"
+                                         Margin="20,5,20,5"
+                                         IsChecked="True"
+                                         Style="{StaticResource RadioButtonTheme}"
+                                         Command="{Binding SubTask1Command}"/>
+
+                            <RadioButton Content="Lab_4.2"
+                                         Foreground="White"
+                                         FontSize="18"
+                                         Width="600"
+                                         Margin="20,5,20,5"
+                                         Style="{StaticResource RadioButtonTheme}"
+                                         Command="{Binding SubTask2Command}"/>
+                        </StackPanel>
+                    </Viewbox>
+                </Grid>
+            </Border>
+            
+            <ContentControl Grid.Row="1"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
+</Window>
