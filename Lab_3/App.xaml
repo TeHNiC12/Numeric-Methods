@@ -36,6 +36,9 @@
                 <view:SubTask4View/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:SubTask5ViewModel}">
+                <view:SubTask5View/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

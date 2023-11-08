@@ -1,0 +1,476 @@
+﻿<UserControl x:Class="Lab_3.MVVM.View.SubTask5View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lab_3.MVVM.View"
+             xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+             xmlns:viewModel="clr-namespace:Lab_3.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:SubTask5ViewModel/>
+    </UserControl.DataContext>
+
+    <Border Background="#FF1F1F1F"
+            CornerRadius="15">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Margin="5,3,5,0"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Margin="5,0,5,0">
+
+                        <TextBlock Text="Численное интегрирование"
+                                   Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="1"
+                    Margin="5,3,5,0"
+                    Background="#FF2B2B2B"
+                    CornerRadius="5">
+
+                    <UniformGrid Columns="3"
+                                 Margin="5,0,5,0">
+
+                        <Viewbox Grid.Column="0"
+                                 HorizontalAlignment="Left">
+
+                            <controls:FormulaControl Formula="y=\frac{1}{256-x^{4}}"
+                                                     Foreground="#fff"
+                                                     Margin="15"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="1"
+                                 HorizontalAlignment="Left">
+
+                            <UniformGrid Rows="2">
+
+                                <controls:FormulaControl Formula="X_0=-2"
+                                                         Foreground="#fff"
+                                                         Margin="8"/>
+
+                                <controls:FormulaControl Formula="X_k=2"
+                                                         Foreground="#fff"
+                                                         Margin="8"/>
+                            </UniformGrid>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="2"
+                                 HorizontalAlignment="Left">
+
+                            <UniformGrid Rows="2">
+
+                                <controls:FormulaControl Formula="h_1=1"
+                                                         Foreground="#fff"
+                                                         Margin="8"/>
+
+                                <controls:FormulaControl Formula="h_2=0.5"
+                                                         Foreground="#fff"
+                                                         Margin="8"/>
+                            </UniformGrid>
+                        </Viewbox>
+                    </UniformGrid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0"
+                        Margin="5,5,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="метод"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25"/>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="1"
+                        Margin="2,5,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="шаг"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25"/>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="2"
+                        Margin="2,5,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+                    
+                    <Viewbox Margin="3">
+                        <controls:FormulaControl Formula="F=\int_{a}^{b}ydx"
+                                                 Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="3"
+                        Margin="2,5,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="погрешность"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25"/>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="4"
+                        Margin="2,5,5,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="уточнение"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25"/>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0"
+                        Margin="5,2,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="прямоугольников"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+
+                <UniformGrid Grid.Row="1" Grid.Column="1"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="h1"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+                        
+                        <TextBlock Text="h2"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="1" Grid.Column="2"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F1}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F2}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="1" Grid.Column="3"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error1}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error2}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <Border Grid.Row="1" Grid.Column="4"
+                        Margin="2,2,5,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="{Binding Rect1}"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0"
+                        Margin="5,2,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="трапеций"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+
+                <UniformGrid Grid.Row="2" Grid.Column="1"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="h1"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="h2"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="2" Grid.Column="2"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F3}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F4}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="2" Grid.Column="3"
+                             Rows="2">
+                    
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error3}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error4}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <Border Grid.Row="2" Grid.Column="4"
+                        Margin="2,2,5,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="{Binding Rect2}"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+
+                <Border Grid.Row="3" Grid.Column="0"
+                        Margin="5,2,2,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="Симпсона"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+
+                <UniformGrid Grid.Row="3" Grid.Column="1"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="h1"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="h2"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="3" Grid.Column="2"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F5}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding F6}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="3" Grid.Column="3"
+                             Rows="2">
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error5}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+
+                    <Border Margin="2,2,2,2"
+                            Background="#FF2B2B2B"
+                            CornerRadius="3">
+
+                        <TextBlock Text="{Binding Error6}"
+                                   Foreground="#fff"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"/>
+                    </Border>
+                </UniformGrid>
+
+                <Border Grid.Row="3" Grid.Column="4"
+                        Margin="2,2,5,2"
+                        Background="#FF2B2B2B"
+                        CornerRadius="3">
+
+                    <TextBlock Text="{Binding Rect3}"
+                               Foreground="#fff"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
