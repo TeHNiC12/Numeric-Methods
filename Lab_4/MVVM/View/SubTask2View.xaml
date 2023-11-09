@@ -8,7 +8,7 @@
              xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:viewModel="clr-namespace:Lab_4.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1280">
 
     <UserControl.DataContext>
         <viewModel:SubTask2ViewModel/>
@@ -16,5 +16,179 @@
 
     <Border Background="#FF1F1F1F">
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Margin="5,0,0,0">
+
+                        <TextBlock Text="Решение краевой задачи для ОДУ 2-го порядка"
+                                   Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="1"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Viewbox Grid.Column="0">
+
+                            <controls:FormulaControl Formula="(x^{2}-1)y^{,,}+(x-3)y^{,}-y=0;"
+                                                     Foreground="#fff"
+                                                     Margin="9"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="1">
+
+                            <controls:FormulaControl Formula="y^{,}(0)=0;"
+                                                     Foreground="#fff"
+                                                     Margin="5"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="2">
+
+                            <controls:FormulaControl Formula="y^{,}(1)+y(1)=-0,75;"
+                                                     Foreground="#fff"
+                                                     Margin="5"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="3">
+
+                            <controls:FormulaControl Formula="y(x)=x-3+\frac{1}{x+1};"
+                                                     Foreground="#fff"
+                                                     Margin="5"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <Viewbox>
+
+                        <TextBlock Text="Метод стрельбы"
+                                   Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="1"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <Viewbox>
+
+                        <TextBlock Text="Конечно-разностный метод"
+                                   Foreground="#fff"/>
+                    </Viewbox>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <oxy:PlotView Model="{Binding PlotModelS}"
+                                  Margin="5"/>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <oxy:PlotView Model="{Binding PlotModelFD}"
+                                  Margin="5"/>
+                </Border>
+            </Grid>
+
+            <UniformGrid Grid.Row="2"
+                         Columns="2">
+
+                <Border Grid.Column="0"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <UniformGrid Rows="2">
+
+                        <Viewbox HorizontalAlignment="Left"
+                                 Margin="5,0,0,0">
+
+                            <TextBlock Text="{Binding Error1}"
+                                       Foreground="#fff"/>
+                        </Viewbox>
+
+                        <Viewbox HorizontalAlignment="Left"
+                                 Margin="5,0,0,0">
+
+                            <TextBlock Text="{Binding RRR1}"
+                                       Foreground="#fff"/>
+                        </Viewbox>
+                    </UniformGrid>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1"
+                        Margin="3"
+                        Background="#FF2B2B2B"
+                        CornerRadius="5">
+
+                    <UniformGrid Rows="2">
+
+                        <Viewbox HorizontalAlignment="Left"
+                                 Margin="5,0,0,0">
+
+                            <TextBlock Text="{Binding Error2}"
+                                       Foreground="#fff"/>
+                        </Viewbox>
+
+                        <Viewbox HorizontalAlignment="Left"
+                                 Margin="5,0,0,0">
+
+                            <TextBlock Text="{Binding RRR2}"
+                                       Foreground="#fff"/>
+                        </Viewbox>
+                    </UniformGrid>
+                </Border>
+            </UniformGrid>
+        </Grid>
     </Border>
 </UserControl>
