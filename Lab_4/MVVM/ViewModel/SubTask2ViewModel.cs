@@ -78,15 +78,23 @@ namespace Lab_4.MVVM.ViewModel
             {
                 TrueYS[i] = val.TrueF(ShootingRes.Item3[i]);
             }
+
+            FDRes = _SubTask2M.FuniteDifferenceMethod(val.a, val.b, 0.05f, val.y0, val.y1, val.alpha, val.betta, val.delta, val.gamma);
+
+            TrueYFD = new double[FDRes.Item1.Length];
+            for (int i = 0; i < FDRes.Item1.Length; i++)
+            {
+                TrueYFD[i] = val.TrueF(FDRes.Item1[i]);
+            }
         }
 
         private void UpdateErrors ()
         {
             error1 = string.Format($"Error Shooting method :  {Math.Round(_SubTask2M.Error(ShootingRes.Item2, TrueYS), 8)}");
-            /*error2 = string.Format($"Error Runge-Knutta 4th order method :  {Math.Round(_SubTask1M.Error(RungeKnutta4OrderYk, TrueY), 8)}");*/
+            error2 = string.Format($"Error finite difference method :  {Math.Round(_SubTask2M.Error(FDRes.Item2, TrueYFD), 8)}");
 
             rrr1 = string.Format($"Runge Romberg error Shooting method :  {Math.Round(_SubTask2M.Error(ShootingRes.Item2, _SubTask2M.RungeRombergRichardson(ShootingRes.Item2, _SubTask2M.ShootingMethod(val.a, val.b, 0.005f, val.alpha, val.betta, val.y0, val.delta, val.gamma, val.y1, val.y0, val.epsilon, val.ddY).Item2, 10, 4)), 9)}");
-            /*rrr2 = string.Format($"Runge Romberg error Runge-Knutta 4th order method :  {Math.Round(_SubTask1M.Error(RungeKnutta4OrderYk, _SubTask1M.RungeRombergRichardson(RungeKnutta4OrderYk, _SubTask1M.RungeKnutta4Order(SubTask1Values.a, SubTask1Values.b, SubTask1Values.h / 10f, SubTask1Values.Y0, SubTask1Values.dY0, SubTask1Values.ddY).Item1, 10, 4)), 9)}");*/
+            rrr2 = string.Format($"Runge Romberg error finite difference method :  {Math.Round(_SubTask2M.Error(FDRes.Item2, _SubTask2M.RungeRombergRichardson(FDRes.Item2, _SubTask2M.FuniteDifferenceMethod(val.a, val.b, 0.005f, val.y0, val.y1, val.alpha, val.betta, val.delta, val.gamma).Item2, 10, 4)), 9)}");
         }
 
         private void UpdatePlotS ()
@@ -191,7 +199,7 @@ namespace Lab_4.MVVM.ViewModel
                 Title = "Y"
             };
 
-            plotModelS.Legends.Add(new Legend
+            plotModelFD.Legends.Add(new Legend
             {
                 LegendPosition = LegendPosition.TopLeft,
                 LegendPlacement = LegendPlacement.Inside
@@ -202,26 +210,29 @@ namespace Lab_4.MVVM.ViewModel
             plotModelFD.Axes.Add(xAxis);
             plotModelFD.Axes.Add(yAxis);
 
-            /*var lineSeries1 = new LineSeries { Title = "Euler explicit" };
-            for (int i = 0; i < Xk.Length; i++)
+            var lineSeries1 = new LineSeries { Title = "True function" };
+            for (int i = 0; i < FDRes.Item1.Length; i++)
             {
-                lineSeries1.Points.Add(new DataPoint(Xk[i], EulerExplicitYk[i]));
+                lineSeries1.Points.Add(new DataPoint(FDRes.Item1[i], TrueYFD[i]));
             }
 
-            var lineSeries2 = new LineSeries { Title = "Euler implicit" };
-            for (int i = 0; i < Xk.Length; i++)
+            var lineSeries2 = new LineSeries { Title = "Finite difference" };
+            for (int i = 0; i < FDRes.Item1.Length; i++)
             {
-                lineSeries2.Points.Add(new DataPoint(Xk[i], EulerImplicitYk[i]));
+                lineSeries2.Points.Add(new DataPoint(FDRes.Item1[i], FDRes.Item2[i]));
             }
 
 
-            plotModelS.Series.Add(lineSeries1);
-            plotModelS.Series.Add(lineSeries2);*/
+            plotModelFD.Series.Add(lineSeries1);
+            plotModelFD.Series.Add(lineSeries2);
 
             plotModelFD.InvalidatePlot(true);
         }
 
         private Tuple<double[], double[], double[]> ShootingRes;
         private double[] TrueYS;
+
+        private Tuple<double[], double[]> FDRes;
+        private double[] TrueYFD;
     }
 }

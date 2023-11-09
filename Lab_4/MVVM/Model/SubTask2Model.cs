@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Lab_4.Core;
+using System;
 using System.Linq;
 
 namespace Lab_4.MVVM.Model
 {
     public class SubTask2Model
     {
-
         public Tuple<double[], double[], double[]> ShootingMethod (double a, double b, double h, double alpha, double betta, double ya, double delta, double gamma, double yn, double etta1, double eps, Func<double, double, double, double> ddY)
         {
             double phi = eps * 100f;
@@ -107,5 +107,82 @@ namespace Lab_4.MVVM.Model
             }
             return rrr;
         }
+
+        private double pX (double x)
+        {
+            return (x - 3f) / (Math.Pow(x, 2) - 1f);
+        }
+        private double qX (double x)
+        {
+            return -1f / (Math.Pow(x, 2) - 1f);
+        }
+        private double fX (double x)
+        {
+            return 0;
+        }
+
+        private double innerL (double x, double h)
+        {
+            return 1f - pX(x) * h / 2f;
+        }
+        private double innerM (double x, double h)
+        {
+            return -2f + Math.Pow(h, 2) * qX(x);
+        }
+        private double innerR (double x, double h)
+        {
+            return 1f + pX(x) * h / 2f;
+        }
+        private double eqlF (double x, double h)
+        {
+            return Math.Pow(h, 2) * fX(x);
+        }
+
+        public Tuple<double[], double[]> FuniteDifferenceMethod (double a, double b, double h, double y0, double y1, double alpha, double betta, double delta, double gamma)
+        {
+            double[] X = Dscretize(a, b, h);
+
+            double[] A1 = new double[X.Length];
+            A1[0] = 0f;
+            A1[X.Length - 1] = -gamma;
+
+            double[] A2 = new double[X.Length];
+            A2[0] = h * alpha - betta;
+            A2[X.Length - 1] = h * delta + gamma;
+
+            double[] A3 = new double[X.Length];
+            A3[0] = betta;
+            A3[X.Length - 1] = 0f;
+
+            double[] B = new double[X.Length];
+            B[0] = y0 * h;
+            B[X.Length - 1] = y1 * h;
+
+            for (int i = 1; i < X.Length - 1; i++)
+            {
+                A1[i] = innerL(X[i], h);
+                A2[i] = innerM(X[i], h);
+                A3[i] = innerR(X[i], h);
+                B[i] = eqlF(X[i], h);
+            }
+
+            MatExt matExt = new()
+            {
+                A = new double[A1.Length, 3],
+                B = new double[A1.Length, 1]
+            };
+
+            for (int i = 0; i < A1.Length; i++)
+            {
+                matExt.A[i, 0] = A1[i];
+                matExt.A[i, 1] = A2[i];
+                matExt.A[i, 2] = A3[i];
+                matExt.B[i, 0] = B[i];
+
+            }
+            return new Tuple<double[], double[]>(X, rundown.Execute(matExt));
+        }
+
+        private Rundown rundown = new();
     }
 }
