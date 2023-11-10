@@ -33,12 +33,12 @@ namespace Lab_4.MVVM.Model
 
         private Tuple<double, double> GetEtaNext (double etta1, double etta2, double delta, double gamma, double yn, Tuple<double[], double[], double[]> res1, Tuple<double[], double[], double[]> res2)
         {
-            double yb_1 = res1.Item1[res1.Item1.Length - 1];
-            double zb_1 = res1.Item2[res1.Item2.Length - 1];
+            double yb_1 = res1.Item2[res1.Item2.Length - 1];
+            double zb_1 = res1.Item1[res1.Item1.Length - 1];
             double phi_1 = delta * yb_1 + gamma * zb_1 - yn;
 
-            double yb = res2.Item1[res2.Item1.Length - 1];
-            double zb = res2.Item2[res2.Item2.Length - 1];
+            double yb = res2.Item2[res2.Item2.Length - 1];
+            double zb = res2.Item1[res2.Item1.Length - 1];
             double phi_2 = delta * yb + gamma * zb - yn;
 
             return new Tuple<double, double>(phi_2, etta2 - (etta2 - etta1) / (phi_2 - phi_1) * phi_2);
