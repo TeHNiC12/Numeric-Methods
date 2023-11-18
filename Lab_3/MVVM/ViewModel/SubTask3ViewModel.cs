@@ -110,7 +110,7 @@ namespace Lab_3.MVVM.ViewModel
             error1 = string.Format($"Сумма квадратов ошибок для многочлена первой степени:  {Math.Round(_SubTask3M.CalculateError(SubTask3Values.Xi, SubTask3Values.Yi), 4)}");
 
             _SubTask3M.CalculateCoeffsA(SubTask3Values.Xi, SubTask3Values.Yi, 2);
-            plotModel.Series.Add(new FunctionSeries(_SubTask3M.LeastSquaresAppriximation, SubTask3Values.Xi.Min(), SubTask3Values.Xi.Max(), 0.001, "1st order MNK"));
+            plotModel.Series.Add(new FunctionSeries(_SubTask3M.LeastSquaresAppriximation, SubTask3Values.Xi.Min(), SubTask3Values.Xi.Max(), 0.001, "2nd order MNK"));
             error2 = string.Format($"Сумма квадратов ошибок для многочлена второй степени:  {Math.Round(_SubTask3M.CalculateError(SubTask3Values.Xi, SubTask3Values.Yi), 4)}");
 
             plotModel.InvalidatePlot(true);
